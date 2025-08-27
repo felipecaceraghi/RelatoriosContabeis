@@ -270,10 +270,47 @@ export default function Home(){
   return (
     <div className="min-h-screen bg-gray-50">
       <header className="bg-gradient-to-r from-sky-700 to-sky-900 text-white py-3 shadow-lg">
-        <div className="container mx-auto px-4 flex flex-col items-center sm:flex-row sm:items-center gap-2 sm:gap-4">
-          <img src="/logo.png" alt="Logo" className="h-12 object-contain mb-2 sm:mb-0 mx-auto sm:mx-0"/>
-          <h1 className="text-xl font-bold whitespace-normal text-center sm:text-left w-full sm:w-auto">Sistema de Automação - Relatórios Contábeis</h1>
+        <div className="container mx-auto px-4 flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+          <img 
+            src="/logo.png" 
+            alt="Logo" 
+            className="h-[43.2px] sm:h-12 object-contain mb-2 sm:mb-0 mx-auto sm:mx-0 transition-all duration-200"
+            style={{ height: '43.2px' }} // fallback for mobile (10% menor que 48px)
+          />
+          <h1 
+            className="text-xl font-bold whitespace-normal text-center sm:text-left w-full sm:w-auto"
+            style={{ textAlign: 'center' }}
+          >
+            <span className="block sm:inline">Sistema de Automação - Relatórios Contábeis</span>
+          </h1>
         </div>
+        <style jsx>{`
+          @media (min-width: 640px) {
+            header .container {
+              justify-content: flex-start !important;
+            }
+            header img {
+              margin-left: 0 !important;
+              margin-right: 0 !important;
+            }
+            header h1 {
+              text-align: left !important;
+            }
+          }
+          @media (max-width: 639px) {
+            header .container {
+              justify-content: center !important;
+            }
+            header img {
+              height: 43.2px !important;
+              margin-left: auto !important;
+              margin-right: auto !important;
+            }
+            header h1 {
+              text-align: center !important;
+            }
+          }
+        `}</style>
       </header>
 
       <div className="app-scale">
