@@ -64,7 +64,7 @@ export default function Home(){
     const candidates = []
     if(API_BASE) candidates.push(API_BASE)
     candidates.push('')
-    candidates.push('http://localhost:3000')
+    candidates.push('https://contabilestatistica.loca.lt')
 
     // Always add bypass-tunnel-reminder header for localtunnel compatibility
     const mergedOptions = {
