@@ -665,7 +665,7 @@ class DREGenerator:
         excel_data.append({'type': 'spacer', 'values': ['', '', '']})
 
     def prepare_table_data(self):
-        """VERSÃO CORRIGIDA - Ordem correta dos grupos"""
+        """VERSÃO CORRIGIDA - Ordem correta dos grupos com identificação melhorada"""
         
         # 1. Obter saldos das contas
         saldos = {item['CODI_CTA']: Decimal(str(item['SALDOATU'])) for item in self.data['saldos_contas']}
@@ -771,7 +771,7 @@ class DREGenerator:
 
         despesas_operacionais_total = despesas_administrativas + despesas_vendas
 
-        # 5. NOVO GRUPO: DESPESAS OPERACIONAIS (subtotal calculado) - ANTES das específicas
+        # 5. GRUPO: DESPESAS OPERACIONAIS (subtotal calculado) - PRIMEIRO
         operational_expenses_text = "OPERATING EXPENSES" if self.ingles else "DESPESAS OPERACIONAIS"
         self._add_group_to_table(pdf_data, excel_data, operational_expenses_text, despesas_operacionais_total, is_calculated_subtotal=True)
 
@@ -832,12 +832,16 @@ class DREGenerator:
         return pdf_data, excel_data, resultado_final
     
     def _is_revenue_group(self, group_name):
-        """Identifica grupos de receita (português ou inglês)"""
+        """Identifica grupos de receita (português ou inglês) - CORRIGIDO"""
+        # Primeiro exclui explicitamente despesas
+        group_upper = group_name.upper()
+        if 'DESPESAS' in group_upper or 'EXPENSES' in group_upper or 'DESPESA' in group_upper:
+            return False
+            
         keywords_pt = ["RECEITA BRUTA", "RECEITA", "VENDAS", "VENDA"]
         keywords_en = ["GROSS REVENUE", "REVENUE", "SALES"]
         exclude = ["DEDUÇ", "TAX", "DEDUCTION"]
         
-        group_upper = group_name.upper()
         has_revenue = (any(k in group_upper for k in keywords_pt) or 
                     any(k in group_upper for k in keywords_en))
         has_exclude = any(k in group_upper for k in exclude)
@@ -867,10 +871,10 @@ class DREGenerator:
         return has_cost and not has_admin
 
     def _is_administrative_expense_group(self, group_name):
-        """Identifica APENAS despesas administrativas (não vendas)"""
+        """Identifica APENAS despesas administrativas (não vendas) - CORRIGIDO"""
         keywords_pt = ["DESPESAS ADMINISTRATIVAS", "ADMINISTRATIVA"]
         keywords_en = ["ADMINISTRATIVE EXPENSES", "ADMINISTRATIVE"]
-        exclude_keywords = ["VENDAS", "SALES", "DEPRECIA", "AMORTIZ", "FINANCEIRO", "FINANCIAL"]
+        exclude_keywords = ["VENDAS", "SALES", "DEPRECIA", "AMORTIZ", "FINANCEIRO", "FINANCIAL", "COM VENDAS"]
         
         group_upper = group_name.upper()
         has_admin = (any(k in group_upper for k in keywords_pt) or 
@@ -880,14 +884,16 @@ class DREGenerator:
         return has_admin and not has_exclude
 
     def _is_sales_expense_group(self, group_name):
-        """Identifica APENAS despesas com vendas"""
-        keywords_pt = ["DESPESAS COM VENDAS", "VENDAS"]
-        keywords_en = ["SALES EXPENSES", "SALES"]
+        """Identifica APENAS despesas com vendas - CORRIGIDO"""
+        keywords_pt = ["DESPESAS COM VENDAS", "DESPESA COM VENDA"]
+        keywords_en = ["SALES EXPENSES", "SALES EXPENSE"]
         exclude_keywords = ["ADMINISTRATIVA", "ADMINISTRATIVE", "DEPRECIA", "AMORTIZ", "FINANCEIRO", "FINANCIAL"]
         
         group_upper = group_name.upper()
+        # Verifica se tem "DESPESAS" E "VENDAS" juntos ou keywords específicos
         has_sales = (any(k in group_upper for k in keywords_pt) or 
-                     any(k in group_upper for k in keywords_en))
+                     any(k in group_upper for k in keywords_en) or
+                     ("DESPESAS" in group_upper and "VENDAS" in group_upper))
         has_exclude = any(k in group_upper for k in exclude_keywords)
         
         return has_sales and not has_exclude
