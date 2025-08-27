@@ -131,7 +131,34 @@ body { font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvet
 .modal-overlay.show { display: flex; }
 .modal-content { background: var(--white); border-radius: 16px; padding: 2rem; box-shadow: var(--shadow-lg); width: 90%; max-width: 500px; text-align: center; }
 
-@media (max-width: 992px) { .main-layout-grid { grid-template-columns: 1fr; } .right-column { padding: 1rem; margin-top: -1rem; } }
-@media (max-width: 768px) { .form-card { padding: 1.5rem; } }
+
+@media (max-width: 992px) {
+	.main-layout-grid { grid-template-columns: 1fr; }
+	.right-column { padding: 1rem; margin-top: -1rem; }
+}
+@media (max-width: 768px) {
+	.form-card { padding: 1.5rem; }
+	.container { padding-left: 0.5rem; padding-right: 0.5rem; }
+}
+@media (max-width: 640px) {
+	.container { max-width: 100vw; padding-left: 0.25rem; padding-right: 0.25rem; }
+	.card, .form-card { padding: 0.5rem; border-radius: 8px; }
+	.card-panel { padding: 0.75rem; }
+	.group-box { padding: 0.5rem; border-radius: 8px; }
+	.tile { min-height: 44px; padding: 0.6rem 0.5rem; font-size: 0.95rem; }
+	.btn-primary { padding: 0.7rem 1rem; font-size: 0.95rem; border-radius: 8px; }
+	.calendar-popup { width: 100vw; left: -16px; }
+}
+@media (max-width: 480px) {
+	.app-scale { transform: none !important; }
+	.container { max-width: 100vw; padding-left: 0.1rem; padding-right: 0.1rem; }
+	.card, .form-card { padding: 0.3rem; border-radius: 6px; }
+	.card-panel { padding: 0.5rem; }
+	.group-box { padding: 0.3rem; border-radius: 6px; }
+	.tile { min-height: 38px; padding: 0.4rem 0.3rem; font-size: 0.92rem; }
+	.btn-primary { padding: 0.5rem 0.5rem; font-size: 0.92rem; border-radius: 6px; }
+	.calendar-popup { width: 100vw; left: -16px; }
+	.header h1 { font-size: 1rem; }
+}
 
 

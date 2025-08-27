@@ -248,14 +248,14 @@ export default function Home(){
   return (
     <div className="min-h-screen bg-gray-50">
       <header className="bg-gradient-to-r from-sky-700 to-sky-900 text-white py-3 shadow-lg">
-        <div className="container mx-auto px-4 flex items-center gap-4">
+        <div className="container mx-auto px-4 flex items-center gap-4 flex-wrap sm:flex-nowrap">
           <img src="/logo.png" alt="Logo" className="h-10 object-contain"/>
-          <h1 className="text-xl font-bold">Sistema de Automação - Relatórios Contábeis</h1>
+          <h1 className="text-xl font-bold whitespace-normal sm:whitespace-nowrap text-center sm:text-left w-full sm:w-auto">Sistema de Automação - Relatórios Contábeis</h1>
         </div>
       </header>
 
       <div className="app-scale">
-      <div className="container mx-auto px-4 py-6">
+      <div className="container mx-auto px-2 sm:px-4 py-4 sm:py-6">
         <div className={`mb-6 ${processing? 'block':'hidden'}`}>
           <div className="card-panel card-notice">
             <div className="flex items-center gap-3">
@@ -273,7 +273,7 @@ export default function Home(){
             {/* Top: Basic info */}
             <div className="mb-6">
               <h3 className="text-lg font-semibold mb-3 flex items-center gap-2"><i className="fas fa-info-circle text-sky-600"></i> Informações Básicas</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div>
                   <div className="flex items-center justify-between mb-2">
                     <label className="text-sm font-medium">Empresas</label>
@@ -315,12 +315,12 @@ export default function Home(){
               </div>
             </div>
 
-            {/* Middle: three columns - Relatórios | Idioma | Opções */}
-            <div className="grid lg:grid-cols-2 gap-6 items-stretch">
+            {/* Middle: Relatórios | Idioma */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 items-stretch">
               <div className="group-box">
                 <div className="group-header"><i className="fas fa-chart-line text-sky-600 mr-2"></i>Relatórios Contábeis</div>
                 <div className="group-body">
-                  <div className="grid grid-cols-2 gap-6">
+                  <div className="grid grid-cols-2 gap-4 sm:gap-6">
                     {['balancete','comparativo','dre','razao'].map(k=> (
                       <div key={k} onClick={()=>toggleRel(k)} className={`tile ${relatorios[k]? 'tile-selected':'tile-unselected'}`}>
                         <div className="font-medium text-sm capitalize">{k.replace('_',' ')}</div>
@@ -334,7 +334,7 @@ export default function Home(){
               <div className="group-box">
                 <div className="group-header"><i className="fas fa-language text-sky-600 mr-2"></i>Idioma dos Relatórios</div>
                 <div className="group-body">
-                  <div className="grid grid-cols-1 gap-6">
+                  <div className="grid grid-cols-1 gap-4 sm:gap-6">
                     <div onClick={()=>toggleIdioma('portugues')} className={`tile ${idiomas.portugues? 'tile-selected':'tile-unselected'}`}>
                       <div className="font-medium text-sm">Português</div>
                       <div className="check">✓</div>
