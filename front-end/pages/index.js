@@ -258,9 +258,9 @@ export default function Home(){
   return (
     <div className="min-h-screen bg-gray-50">
       <header className="bg-gradient-to-r from-sky-700 to-sky-900 text-white py-3 shadow-lg">
-        <div className="container mx-auto px-4 flex items-center gap-4 flex-wrap sm:flex-nowrap">
-          <img src="/logo.png" alt="Logo" className="h-10 object-contain"/>
-          <h1 className="text-xl font-bold whitespace-normal sm:whitespace-nowrap text-center sm:text-left w-full sm:w-auto">Sistema de Automação - Relatórios Contábeis</h1>
+        <div className="container mx-auto px-4 flex flex-col items-center sm:flex-row sm:items-center gap-2 sm:gap-4">
+          <img src="/logo.png" alt="Logo" className="h-12 object-contain mb-2 sm:mb-0 mx-auto sm:mx-0"/>
+          <h1 className="text-xl font-bold whitespace-normal text-center sm:text-left w-full sm:w-auto">Sistema de Automação - Relatórios Contábeis</h1>
         </div>
       </header>
 

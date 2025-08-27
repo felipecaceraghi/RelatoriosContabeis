@@ -1,0 +1,19 @@
+{
+  "id": "b4897c1a-cd3c-4f7c-8521-0374380274e1",
+  "type": "razao",
+  "payload": {
+    "codiEmp": 421,
+    "dataInicial": "2025-06-01",
+    "dataFinal": "2025-06-30",
+    "ingles": true
+  },
+  "status": "complete",
+  "progress": 100,
+  "result": {
+    "raw": "\r\n============================================================\r\n🚀 INICIANDO FLUXO PARA EMPRESA: 421 (Sessão: 20250827_164154)\r\n⏰ Horário de início: 16:41:54\r\n============================================================\r\n   ⏱️  Conexão com banco: 0.1 segundos\r\n\r\n[CONFIG] Buscando traduções para o idioma selecionado...\r\n  -> Idioma configurado para: Inglês\r\n\r\n[PASSO 1 de 7] Buscando informações da empresa...\r\n   ⏱️  Busca informações da empresa: 0.0 segundos\r\n\r\n[PASSO 2 de 7] Buscando responsável legal...\r\n   ⏱️  Busca responsável legal: 0.0 segundos\r\n\r\n[PASSO 3 de 7] Buscando dados do contador...\r\n   ⏱️  Busca dados do contador: 0.0 segundos\r\n\r\n[PASSO 5 de 7] Limpando tabela auxiliar e configurando datas...\r\n   ⏱️  Limpeza e configuração: 0.0 segundos\r\n\r\n[PASSO 6 de 7] Determinando filtro de filiais...\r\n  -> Filtro de filial: Apenas a empresa principal 421\r\n   ⏱️  Determinação do filtro de filiais: 0.0 segundos\r\n\r\n[PASSO 7 de 7] Executando a consulta principal do Razão...\r\n   ⏱️  Execução da consulta SQL principal: 0.5 segundos\r\n  -> Consulta não retornou dados. Fim do fluxo.\r\n  -> Conexão com o banco de dados fechada.\r\n   ⏱️  Limpeza e fechamento: 0.0 segundos\r\n\r\n============================================================\r\n⏰ RELATÓRIO DE TEMPOS DE EXECUÇÃO\r\n============================================================\r\n🕐 Horário de término: 16:41:54\r\n📊 Detalhamento por etapa:\r\n   • Conexão                  : 0.1 segundos\r\n   • Passo 1                  : 0.0 segundos\r\n   • Passo 2                  : 0.0 segundos\r\n   • Passo 3                  : 0.0 segundos\r\n   • Passo 5                  : 0.0 segundos\r\n   • Passo 6                  : 0.0 segundos\r\n   • Passo 7                  : 0.5 segundos\r\n   • Limpeza final            : 0.0 segundos\r\n============================================================\r\n🏁 TEMPO TOTAL DE EXECUÇÃO: 0.6 segundos\r\n📈 Eficiência: 100.0% (tempo útil)\r\n============================================================\r\n[]\r\n",
+    "code": 0
+  },
+  "error": null,
+  "createdAt": 1756323712745,
+  "startedAt": 1756323713284
+}

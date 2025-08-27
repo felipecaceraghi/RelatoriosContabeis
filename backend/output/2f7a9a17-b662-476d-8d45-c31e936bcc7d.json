@@ -1,0 +1,19 @@
+{
+  "id": "2f7a9a17-b662-476d-8d45-c31e936bcc7d",
+  "type": "comparativo",
+  "payload": {
+    "codiEmp": 421,
+    "dataInicial": "2025-06-01",
+    "dataFinal": "2025-06-30",
+    "ingles": true
+  },
+  "status": "complete",
+  "progress": 100,
+  "result": {
+    "raw": "\r\n=== GERANDO RELATÓRIO ===\r\nEmpresa: 421\r\nPeríodo: 2025-06-01 a 2025-06-30\r\nIdioma: Inglês\r\n==================================================\r\nModo: Acumulado (multi-meses)\r\nPeríodo: 2025-01-01 a 2025-06-30\r\nExecutando query 'info_empresa'...\r\nQuery 'info_empresa' retornou 1 linhas.\r\n\r\nProcessando dados para acumulado...\r\nProcessando período: 01/2025\r\nProcessando período: 02/2025\r\nProcessando período: 03/2025\r\nProcessando período: 04/2025\r\nProcessando período: 05/2025\r\nProcessando período: 06/2025\r\nFiltro aplicado: 168 contas zeradas removidas. Restam 0 contas.\r\n\r\n!!! ATENÇÃO: A lista de dados para o relatório está vazia após o processamento.\r\n[]\r\n",
+    "code": 0
+  },
+  "error": null,
+  "createdAt": 1756323709773,
+  "startedAt": 1756323710933
+}

@@ -29,6 +29,30 @@ router.get('/:id', (req, res) => {
     }catch(e){ /* ignore */ }
   }
 
+  // Adiciona campo files no result, se possível
+  let files = [];
+  if (status.result && typeof status.result === 'object') {
+    // Se for dict com pdf/xlsx/json
+    if (status.result.pdf || status.result.xlsx || status.result.json) {
+      if (status.result.pdf) files.push({ name: path.basename(status.result.pdf), path: status.result.pdf });
+      if (status.result.xlsx) files.push({ name: path.basename(status.result.xlsx), path: status.result.xlsx });
+      if (status.result.json) files.push({ name: path.basename(status.result.json), path: status.result.json });
+    }
+    // Se for lista de arquivos
+    if (Array.isArray(status.result)) {
+      status.result.forEach(f => files.push({ name: path.basename(f), path: f }));
+    }
+  }
+  // Se copiou arquivos
+  if (status.copiedFiles && Array.isArray(status.copiedFiles)) {
+    status.copiedFiles.forEach(f => files.push({ name: path.basename(f), path: f }));
+  }
+  // Remove duplicados
+  files = files.filter((v,i,a)=>a.findIndex(t=>(t.path===v.path))===i);
+  // Adiciona no result
+  if (!status.result) status.result = {};
+  status.result.files = files;
+
   res.json({ success: true, status });
 });
 
