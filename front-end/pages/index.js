@@ -45,26 +45,9 @@ export default function Home(){
   const fetchCompanies = async (q)=>{
     try{
       const path = q && q.length>=2 ? `/companies?q=${encodeURIComponent(q)}` : '/companies'
-      const url = API_BASE ? `${API_BASE.replace(/\/$/, '')}${path}` : path
-      // first try configured/relative URL
-      let res
-      try{
-        res = await fetch(url)
-      }catch(e){
-        // network error on relative/empty API_BASE; will try localhost fallback below
-        res = null
-      }
-
-      // If we didn't get a good response and API_BASE was not set, try localhost:3000 as fallback
-      if((!res || !res.ok) && !API_BASE){
-        try{
-          const fallback = `http://localhost:3000${path}`
-          res = await fetch(fallback)
-        }catch(e){ res = null }
-      }
-
-      if(!res || !res.ok) {
-        console.debug('fetchCompanies: no results or endpoint unreachable', { url, apiBase: API_BASE })
+      const { res, ok } = await safeFetch(path, { method: 'GET' })
+      if(!res || !ok) {
+        console.debug('fetchCompanies: no results or endpoint unreachable', { path, apiBase: API_BASE })
         return setCompanies([])
       }
       const json = await res.json()
