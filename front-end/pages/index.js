@@ -224,9 +224,21 @@ export default function Home(){
       let detalhes = []
       for(const [id, st] of statuses.entries()){
         if(st && st.status === 'complete' && st.result && st.result.files){
-          // st.result.files deve ser um array de arquivos gerados
+          // Aceita tanto objetos quanto strings em result.files
           st.result.files.forEach(f => {
-            detalhes.push(`✔️ ${f.name || f.path || f} gerado em: ${f.path || f}`)
+            let nome, caminho
+            if(typeof f === 'string') {
+              caminho = f
+              // Extrai apenas o nome do arquivo do caminho
+              nome = f.split(/[\\/]/).pop()
+            } else if(typeof f === 'object' && f !== null) {
+              nome = f.name || (f.path ? f.path.split(/[\\/]/).pop() : '') || ''
+              caminho = f.path || f.name || ''
+            } else {
+              nome = String(f)
+              caminho = String(f)
+            }
+            detalhes.push(`✔️ ${nome} gerado em: ${caminho}`)
           })
         } else if(st && st.status === 'complete') {
           detalhes.push(`✔️ Relatório gerado com sucesso (ID: ${id})`)
