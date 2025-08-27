@@ -78,6 +78,7 @@ GROUP_TRANSLATIONS = {
         'CMV': 'COGS',
         'CSV': 'CSS',
         'DESPESAS ADMINISTRATIVAS': 'ADMINISTRATIVE EXPENSES',
+        'DESPESAS COM VENDAS': 'SALES EXPENSES',
         'DESPESAS OPERACIONAIS': 'OPERATING EXPENSES',
         'DESPESAS': 'EXPENSES',
         'DEPRECIAÇÃO E AMORTIZAÇÃO': 'DEPRECIATION AND AMORTIZATION',
@@ -97,7 +98,7 @@ GROUP_TRANSLATIONS = {
 }
 
 # ==============================================================================
-# MANTÉM A CONSULTA SQL ORIGINAL COMPLEXA + SUPORTE A INGLÊS
+# CONSULTAS SQL COM SUPORTE A INGLÊS
 # ==============================================================================
 def get_queries(codi_emp, data_inicial, data_final, ingles=False):
     # Determina se deve usar traduções em inglês
@@ -125,9 +126,220 @@ def get_queries(codi_emp, data_inicial, data_final, ingles=False):
         idioma_select_grupo = "CTGRUPOSDRE.DESCRICAO"
 
     return {
-        # MANTÉM A CONSULTA ORIGINAL COMPLEXA - APENAS ADICIONA SUPORTE A IDIOMAS
+        # DEIXAR ESPAÇO AQUI PARA COLAR A CONSULTA COMPLETA
         "estrutura_dre_completa_tipo2": f"""
-            SELECT 1 AS DEMONSTRATIVO, CTGRUPOSDRE.SEQUENCIA AS SEQUENCIA, DSDBA.FG_MONTA_MASCARA_CT('#.#.#.###.####', CTCONTAS.CLAS_CTA) AS CLASCTA, GEEMPRE.NOME_EMP AS NOMEEMP, TD_CONTADOR.NOME_CON AS NOMCONT, COALESCE(TD_CONTADOR.RCRC_CON, ' ') AS CRCCONT, GEEMPRE.RLEG_EMP AS RESPON, GEEMPRE.CARGO_LEG_EMP AS CARGO, DATE('{data_final}') AS DATAFIN, DATE('{data_inicial}') AS DATAINI, CAST({idioma_select_grupo} AS VARCHAR(90)) AS NOMEGRUPO, CAST({idioma_select_conta} AS VARCHAR(90)) AS NOMECONTA, 0 AS SUBQUEBRA, 0 AS TEMTOTAL1, 0 AS TEMTOTAL2, CAST(0 AS DECIMAL(13,2)) AS VALOR, CAST(0 AS DECIMAL(13,2)) AS TOTAL1, CAST(0 AS DECIMAL(13,2)) AS TOTAL2, CTGRUPOSDRE.OPERACAO AS GRUPOTEMVALOR, CAST(0 AS DECIMAL(13,2)) AS VALORGRUPO, CTCONTAS.CODI_CTA AS CODICTA, GEEMPRE.ESTA_EMP AS ESTAEMP, GEEMPRE.CGCE_EMP AS CGCEEMP, CTGRUPOSDRE.CONFIGURACAO AS CTGRUPOSDRE_CONFIGURACAO, CTGRUPOSDRE.SOMA AS CTGRUPOSDRE_SOMA, CTGRUPOSDRE.GRUPOS AS CTGRUPOSDRE_GRUPOS, CTGRUPOSDRE.IMPRIMIR_GRUPO AS IMPRIMIR_GRUPO, 'T' AS CTGRUPOSDRE_TIPO, CURRENT TIMESTAMP AS EMISSAO, GEEMPRE.IJUC_EMP AS INSC_JCOM, GEEMPRE.DJUC_EMP AS DATA_JCOM, (CASE WHEN TD_LUCRO.TEXTO = '' THEN 'LUCRO LÍQUIDO DO EXERCÍCIO' ELSE TD_LUCRO.TEXTO END) AS TEXTO_LUCRO, (CASE WHEN TD_PREJUIZO.TEXTO = '' THEN 'PREJUÍZO DO EXERCÍCIO' ELSE TD_PREJUIZO.TEXTO END) AS TEXTO_PREJUIZO, CTGRUPOSDRE.CODIGO AS CODIGO, TD_TITULO.TITULO AS TITULO_DRE, TD_TITULO_SEGUNDA_LINHA.TITULO AS TITULO_DRE_SEGUNDA_LINHA, '' AS TITULO_DRA, '' AS CODICTA_REF, '' AS CLASCTA_REF FROM BETHADBA.GEEMPRE AS GEEMPRE LEFT OUTER JOIN(SELECT C.NOME_CON AS NOME_CON, C.RCRC_CON AS RCRC_CON, C.CODI_CON AS CODI_CON FROM BETHADBA.GECONTADOR AS C) AS TD_CONTADOR ON TD_CONTADOR.CODI_CON = GEEMPRE.CODI_CON, BETHADBA.CTCONTAS AS CTCONTAS {idioma_join_contas}, BETHADBA.CTGRUPOSDRE AS CTGRUPOSDRE {idioma_join_grupos}, LATERAL(SELECT COALESCE(TRIM(MAX(CAST(I.VALOR AS VARCHAR(5000)))), '') AS TEXTO FROM BETHADBA.GEINICIAL AS I WHERE I.CHAVE = 'DRE_descricao_resultado' AND I.SECAO = 'Lucro_' || CAST({codi_emp} AS CHAR(7))) AS TD_LUCRO, LATERAL(SELECT COALESCE(TRIM(MAX(CAST(I.VALOR AS VARCHAR(5000)))), '') AS TEXTO FROM BETHADBA.GEINICIAL AS I WHERE I.CHAVE = 'DRE_descricao_resultado' AND I.SECAO = 'Prejuizo_' || CAST({codi_emp} AS CHAR(7))) AS TD_PREJUIZO, LATERAL(SELECT COALESCE(TRIM(MAX(CAST(I.VALOR AS VARCHAR(5000)))), '') AS TITULO FROM BETHADBA.GEINICIAL AS I WHERE I.CHAVE = 'DRE' AND I.SECAO = 'titulo_' || CAST({codi_emp} AS CHAR(7))) AS TD_TITULO, LATERAL(SELECT COALESCE(TRIM(MAX(CAST(I.VALOR AS VARCHAR(5000)))), '') AS TITULO FROM BETHADBA.GEINICIAL AS I WHERE I.CHAVE = 'DRE' AND I.SECAO = 'titulo_linha2_' || CAST({codi_emp} AS CHAR(7))) AS TD_TITULO_SEGUNDA_LINHA WHERE GEEMPRE.CODI_EMP = {codi_emp} AND CTCONTAS.CODI_EMP = {codi_emp} AND CTCONTAS.GRDRE_CTA IS NOT NULL AND CTCONTAS.GRDRE_CTA > 0 AND CTGRUPOSDRE.CODI_EMP = {codi_emp} AND CTCONTAS.GRDRE_CTA = CTGRUPOSDRE.CODIGO AND 1 IN (1, 3) AND 0 = 0 AND 0 = 0 ORDER BY 1, 2, 39, 3, 12
+            -- DRE NORMAL - CONTAS ANALÍTICAS
+            SELECT 1 AS DEMONSTRATIVO, 
+                   CTGRUPOSDRE.SEQUENCIA AS SEQUENCIA, 
+                   DSDBA.FG_MONTA_MASCARA_CT('#.#.#.###.####', CTCONTAS.CLAS_CTA) AS CLASCTA, 
+                   GEEMPRE.NOME_EMP AS NOMEEMP, 
+                   TD_CONTADOR.NOME_CON AS NOMCONT, 
+                   COALESCE(TD_CONTADOR.RCRC_CON, ' ') AS CRCCONT, 
+                   GEEMPRE.RLEG_EMP AS RESPON, 
+                   GEEMPRE.CARGO_LEG_EMP AS CARGO, 
+                   DATE('{data_final}') AS DATAFIN, 
+                   DATE('{data_inicial}') AS DATAINI, 
+                   CAST({idioma_select_grupo} AS VARCHAR(90)) AS NOMEGRUPO, 
+                   CAST({idioma_select_conta} AS VARCHAR(90)) AS NOMECONTA, 
+                   0 AS SUBQUEBRA, 0 AS TEMTOTAL1, 0 AS TEMTOTAL2, 
+                   CAST(0 AS DECIMAL(13,2)) AS VALOR, 
+                   CAST(0 AS DECIMAL(13,2)) AS TOTAL1, 
+                   CAST(0 AS DECIMAL(13,2)) AS TOTAL2, 
+                   CTGRUPOSDRE.OPERACAO AS GRUPOTEMVALOR, 
+                   CAST(0 AS DECIMAL(13,2)) AS VALORGRUPO, 
+                   CTCONTAS.CODI_CTA AS CODICTA, 
+                   GEEMPRE.ESTA_EMP AS ESTAEMP, 
+                   GEEMPRE.CGCE_EMP AS CGCEEMP, 
+                   CTGRUPOSDRE.CONFIGURACAO AS CTGRUPOSDRE_CONFIGURACAO, 
+                   CTGRUPOSDRE.SOMA AS CTGRUPOSDRE_SOMA, 
+                   CTGRUPOSDRE.GRUPOS AS CTGRUPOSDRE_GRUPOS, 
+                   CTGRUPOSDRE.IMPRIMIR_GRUPO AS IMPRIMIR_GRUPO, 
+                   'T' AS CTGRUPOSDRE_TIPO, 
+                   CURRENT TIMESTAMP AS EMISSAO, 
+                   GEEMPRE.IJUC_EMP AS INSC_JCOM, 
+                   GEEMPRE.DJUC_EMP AS DATA_JCOM, 
+                   (CASE WHEN TD_LUCRO.TEXTO = '' THEN 'LUCRO LÍQUIDO DO EXERCÍCIO' ELSE TD_LUCRO.TEXTO END) AS TEXTO_LUCRO, 
+                   (CASE WHEN TD_PREJUIZO.TEXTO = '' THEN 'PREJUÍZO DO EXERCÍCIO' ELSE TD_PREJUIZO.TEXTO END) AS TEXTO_PREJUIZO, 
+                   CTGRUPOSDRE.CODIGO AS CODIGO, 
+                   TD_TITULO.TITULO AS TITULO_DRE, 
+                   TD_TITULO_SEGUNDA_LINHA.TITULO AS TITULO_DRE_SEGUNDA_LINHA, 
+                   '' AS TITULO_DRA, '' AS CODICTA_REF, '' AS CLASCTA_REF 
+            FROM BETHADBA.GEEMPRE AS GEEMPRE 
+                 LEFT OUTER JOIN(SELECT C.NOME_CON AS NOME_CON, C.RCRC_CON AS RCRC_CON, C.CODI_CON AS CODI_CON 
+                                FROM BETHADBA.GECONTADOR AS C) AS TD_CONTADOR ON TD_CONTADOR.CODI_CON = GEEMPRE.CODI_CON, 
+                 BETHADBA.CTCONTAS AS CTCONTAS {idioma_join_contas}, 
+                 BETHADBA.CTGRUPOSDRE AS CTGRUPOSDRE {idioma_join_grupos}, 
+                 LATERAL(SELECT COALESCE(TRIM(MAX(CAST(I.VALOR AS VARCHAR(5000)))), '') AS TEXTO 
+                        FROM BETHADBA.GEINICIAL AS I 
+                        WHERE I.CHAVE = 'DRE_descricao_resultado' 
+                          AND I.SECAO = 'Lucro_' || CAST({codi_emp} AS CHAR(7))) AS TD_LUCRO, 
+                 LATERAL(SELECT COALESCE(TRIM(MAX(CAST(I.VALOR AS VARCHAR(5000)))), '') AS TEXTO 
+                        FROM BETHADBA.GEINICIAL AS I 
+                        WHERE I.CHAVE = 'DRE_descricao_resultado' 
+                          AND I.SECAO = 'Prejuizo_' || CAST({codi_emp} AS CHAR(7))) AS TD_PREJUIZO, 
+                 LATERAL(SELECT COALESCE(TRIM(MAX(CAST(I.VALOR AS VARCHAR(5000)))), '') AS TITULO 
+                        FROM BETHADBA.GEINICIAL AS I 
+                        WHERE I.CHAVE = 'DRE' 
+                          AND I.SECAO = 'titulo_' || CAST({codi_emp} AS CHAR(7))) AS TD_TITULO, 
+                 LATERAL(SELECT COALESCE(TRIM(MAX(CAST(I.VALOR AS VARCHAR(5000)))), '') AS TITULO 
+                        FROM BETHADBA.GEINICIAL AS I 
+                        WHERE I.CHAVE = 'DRE' 
+                          AND I.SECAO = 'titulo_linha2_' || CAST({codi_emp} AS CHAR(7))) AS TD_TITULO_SEGUNDA_LINHA 
+            WHERE GEEMPRE.CODI_EMP = {codi_emp} 
+              AND CTCONTAS.CODI_EMP = {codi_emp} 
+              AND CTCONTAS.GRDRE_CTA IS NOT NULL 
+              AND CTCONTAS.GRDRE_CTA > 0 
+              AND CTGRUPOSDRE.CODI_EMP = {codi_emp} 
+              AND CTCONTAS.GRDRE_CTA = CTGRUPOSDRE.CODIGO 
+              AND CTCONTAS.TIPO_CTA = 'A'  -- Apenas contas analíticas
+
+            UNION ALL
+
+            -- DRE NORMAL - CONTAS SINTÉTICAS EXPANDIDAS
+            SELECT 1 AS DEMONSTRATIVO, 
+                   CTGRUPOSDRE.SEQUENCIA AS SEQUENCIA, 
+                   DSDBA.FG_MONTA_MASCARA_CT('#.#.#.###.####', TDCONTA.CLAS_CTA) AS CLASCTA, 
+                   GEEMPRE.NOME_EMP AS NOMEEMP, 
+                   TD_CONTADOR.NOME_CON AS NOMCONT, 
+                   COALESCE(TD_CONTADOR.RCRC_CON, ' ') AS CRCCONT, 
+                   GEEMPRE.RLEG_EMP AS RESPON, 
+                   GEEMPRE.CARGO_LEG_EMP AS CARGO, 
+                   DATE('{data_final}') AS DATAFIN, 
+                   DATE('{data_inicial}') AS DATAINI, 
+                   CAST({idioma_select_grupo} AS VARCHAR(90)) AS NOMEGRUPO, 
+                   CAST(TDCONTA.NOME_CTA AS VARCHAR(90)) AS NOMECONTA, 
+                   0 AS SUBQUEBRA, 0 AS TEMTOTAL1, 0 AS TEMTOTAL2, 
+                   CAST(0 AS DECIMAL(13,2)) AS VALOR, 
+                   CAST(0 AS DECIMAL(13,2)) AS TOTAL1, 
+                   CAST(0 AS DECIMAL(13,2)) AS TOTAL2, 
+                   CTGRUPOSDRE.OPERACAO AS GRUPOTEMVALOR, 
+                   CAST(0 AS DECIMAL(13,2)) AS VALORGRUPO, 
+                   TDCONTA.CODI_CTA AS CODICTA, 
+                   GEEMPRE.ESTA_EMP AS ESTAEMP, 
+                   GEEMPRE.CGCE_EMP AS CGCEEMP, 
+                   CTGRUPOSDRE.CONFIGURACAO AS CTGRUPOSDRE_CONFIGURACAO, 
+                   CTGRUPOSDRE.SOMA AS CTGRUPOSDRE_SOMA, 
+                   CTGRUPOSDRE.GRUPOS AS CTGRUPOSDRE_GRUPOS, 
+                   CTGRUPOSDRE.IMPRIMIR_GRUPO AS IMPRIMIR_GRUPO, 
+                   'T' AS CTGRUPOSDRE_TIPO, 
+                   CURRENT TIMESTAMP AS EMISSAO, 
+                   GEEMPRE.IJUC_EMP AS INSC_JCOM, 
+                   GEEMPRE.DJUC_EMP AS DATA_JCOM, 
+                   (CASE WHEN TD_LUCRO.TEXTO = '' THEN 'LUCRO LÍQUIDO DO EXERCÍCIO' ELSE TD_LUCRO.TEXTO END) AS TEXTO_LUCRO, 
+                   (CASE WHEN TD_PREJUIZO.TEXTO = '' THEN 'PREJUÍZO DO EXERCÍCIO' ELSE TD_PREJUIZO.TEXTO END) AS TEXTO_PREJUIZO, 
+                   CTGRUPOSDRE.CODIGO AS CODIGO, 
+                   TD_TITULO.TITULO AS TITULO_DRE, 
+                   TD_TITULO_SEGUNDA_LINHA.TITULO AS TITULO_DRE_SEGUNDA_LINHA, 
+                   '' AS TITULO_DRA, '' AS CODICTA_REF, '' AS CLASCTA_REF 
+            FROM BETHADBA.GEEMPRE AS GEEMPRE 
+                 LEFT OUTER JOIN(SELECT C.NOME_CON AS NOME_CON, C.RCRC_CON AS RCRC_CON, C.CODI_CON AS CODI_CON 
+                                FROM BETHADBA.GECONTADOR AS C) AS TD_CONTADOR ON TD_CONTADOR.CODI_CON = GEEMPRE.CODI_CON, 
+                 BETHADBA.CTCONTAS AS CTCONTAS {idioma_join_contas}, 
+                 BETHADBA.CTGRUPOSDRE AS CTGRUPOSDRE {idioma_join_grupos}, 
+                 LATERAL(SELECT COALESCE(TRIM(MAX(CAST(I.VALOR AS VARCHAR(5000)))), '') AS TEXTO 
+                        FROM BETHADBA.GEINICIAL AS I 
+                        WHERE I.CHAVE = 'DRE_descricao_resultado' 
+                          AND I.SECAO = 'Lucro_' || CAST({codi_emp} AS CHAR(7))) AS TD_LUCRO, 
+                 LATERAL(SELECT COALESCE(TRIM(MAX(CAST(I.VALOR AS VARCHAR(5000)))), '') AS TEXTO 
+                        FROM BETHADBA.GEINICIAL AS I 
+                        WHERE I.CHAVE = 'DRE_descricao_resultado' 
+                          AND I.SECAO = 'Prejuizo_' || CAST({codi_emp} AS CHAR(7))) AS TD_PREJUIZO, 
+                 LATERAL(SELECT COALESCE(TRIM(MAX(CAST(I.VALOR AS VARCHAR(5000)))), '') AS TITULO 
+                        FROM BETHADBA.GEINICIAL AS I 
+                        WHERE I.CHAVE = 'DRE' 
+                          AND I.SECAO = 'titulo_' || CAST({codi_emp} AS CHAR(7))) AS TD_TITULO, 
+                 LATERAL(SELECT COALESCE(TRIM(MAX(CAST(I.VALOR AS VARCHAR(5000)))), '') AS TITULO 
+                        FROM BETHADBA.GEINICIAL AS I 
+                        WHERE I.CHAVE = 'DRE' 
+                          AND I.SECAO = 'titulo_linha2_' || CAST({codi_emp} AS CHAR(7))) AS TD_TITULO_SEGUNDA_LINHA, 
+                 LATERAL(SELECT C.CODI_CTA AS CODI_CTA, C.CLAS_CTA AS CLAS_CTA, C.NOME_CTA AS NOME_CTA 
+                        FROM BETHADBA.CTCONTAS AS C 
+                        WHERE C.CODI_EMP = {codi_emp} 
+                          AND ((CTCONTAS.TIPO_CTA = 'A' AND C.CODI_CTA = CTCONTAS.CODI_CTA) 
+                               OR (CTCONTAS.TIPO_CTA = 'S' 
+                                   AND LEFT(C.CLAS_CTA, LENGTH(CTCONTAS.CLAS_CTA)) = CTCONTAS.CLAS_CTA 
+                                   AND NOT EXISTS(SELECT 1 FROM BETHADBA.CTCONTAS AS CONTA 
+                                                 WHERE CONTA.CODI_EMP = C.CODI_EMP 
+                                                   AND CONTA.CODI_CTA = C.CODI_CTA 
+                                                   AND CONTA.GRDRE_CTA = CTCONTAS.GRDRE_CTA 
+                                                   AND CONTA.TIPO_CTA = 'A') 
+                                   AND (NOT EXISTS(SELECT 1 FROM BETHADBA.CTCONTAS AS CONTA 
+                                                  WHERE CONTA.CODI_EMP = CTCONTAS.CODI_EMP 
+                                                    AND CONTA.TIPO_CTA = 'S' 
+                                                    AND LEFT(CONTA.CLAS_CTA, LENGTH(CTCONTAS.CLAS_CTA)) = CTCONTAS.CLAS_CTA 
+                                                    AND LENGTH(CONTA.CLAS_CTA) > LENGTH(CTCONTAS.CLAS_CTA)) 
+                                        OR C.CODI_CTA = CTCONTAS.CODI_CTA)))) AS TDCONTA 
+            WHERE GEEMPRE.CODI_EMP = {codi_emp} 
+              AND CTCONTAS.CODI_EMP = {codi_emp} 
+              AND CTCONTAS.GRDRE_CTA IS NOT NULL 
+              AND CTCONTAS.GRDRE_CTA > 0 
+              AND CTGRUPOSDRE.CODI_EMP = {codi_emp} 
+              AND CTCONTAS.GRDRE_CTA = CTGRUPOSDRE.CODIGO 
+              AND CTCONTAS.TIPO_CTA = 'S'  -- Contas sintéticas
+
+            UNION ALL
+
+            -- GRUPOS VAZIOS (sem contas vinculadas mas devem aparecer)
+            SELECT 1 AS DEMONSTRATIVO, 
+                   CTGRUPOSDRE.SEQUENCIA AS SEQUENCIA, 
+                   CAST(SPACE(14) AS VARCHAR(14)) AS CLASCTA, 
+                   GEEMPRE.NOME_EMP AS NOMEEMP, 
+                   TD_CONTADOR.NOME_CON AS NOMCONT, 
+                   COALESCE(TD_CONTADOR.RCRC_CON, ' ') AS CRCCONT, 
+                   GEEMPRE.RLEG_EMP AS RESPON, 
+                   GEEMPRE.CARGO_LEG_EMP AS CARGO, 
+                   DATE('{data_final}') AS DATAFIN, 
+                   DATE('{data_inicial}') AS DATAINI, 
+                   CAST({idioma_select_grupo} AS VARCHAR(90)) AS NOMEGRUPO, 
+                   CAST(SPACE(40) AS VARCHAR(40)) AS NOMECONTA, 
+                   0 AS SUBQUEBRA, 0 AS TEMTOTAL1, 0 AS TEMTOTAL2, 
+                   CAST(0 AS DECIMAL(13,2)) AS VALOR, 
+                   CAST(0 AS DECIMAL(13,2)) AS TOTAL1, 
+                   CAST(0 AS DECIMAL(13,2)) AS TOTAL2, 
+                   CTGRUPOSDRE.OPERACAO AS GRUPOTEMVALOR, 
+                   CAST(0 AS DECIMAL(13,2)) AS VALORGRUPO, 
+                   0 AS CODICTA, 
+                   GEEMPRE.ESTA_EMP AS ESTAEMP, 
+                   GEEMPRE.CGCE_EMP AS CGCEEMP, 
+                   CTGRUPOSDRE.CONFIGURACAO AS CTGRUPOSDRE_CONFIGURACAO, 
+                   CTGRUPOSDRE.SOMA AS CTGRUPOSDRE_SOMA, 
+                   CTGRUPOSDRE.GRUPOS AS CTGRUPOSDRE_GRUPOS, 
+                   CTGRUPOSDRE.IMPRIMIR_GRUPO AS IMPRIMIR_GRUPO, 
+                   'T' AS CTGRUPOSDRE_TIPO, 
+                   CURRENT TIMESTAMP AS EMISSAO, 
+                   GEEMPRE.IJUC_EMP AS INSC_JCOM, 
+                   GEEMPRE.DJUC_EMP AS DATA_JCOM, 
+                   (CASE WHEN TD_LUCRO.TEXTO = '' THEN 'LUCRO LÍQUIDO DO EXERCÍCIO' ELSE TD_LUCRO.TEXTO END) AS TEXTO_LUCRO, 
+                   (CASE WHEN TD_PREJUIZO.TEXTO = '' THEN 'PREJUÍZO DO EXERCÍCIO' ELSE TD_PREJUIZO.TEXTO END) AS TEXTO_PREJUIZO, 
+                   CTGRUPOSDRE.CODIGO AS CODIGO, 
+                   TD_TITULO.TITULO AS TITULO_DRE, 
+                   TD_TITULO_SEGUNDA_LINHA.TITULO AS TITULO_DRE_SEGUNDA_LINHA, 
+                   '' AS TITULO_DRA, '' AS CODICTA_REF, '' AS CLASCTA_REF 
+            FROM BETHADBA.GEEMPRE AS GEEMPRE 
+                 LEFT OUTER JOIN(SELECT C.NOME_CON AS NOME_CON, C.RCRC_CON AS RCRC_CON, C.CODI_CON AS CODI_CON 
+                                FROM BETHADBA.GECONTADOR AS C) AS TD_CONTADOR ON TD_CONTADOR.CODI_CON = GEEMPRE.CODI_CON, 
+                 BETHADBA.CTGRUPOSDRE AS CTGRUPOSDRE {idioma_join_grupos}, 
+                 LATERAL(SELECT COALESCE(TRIM(MAX(CAST(I.VALOR AS VARCHAR(5000)))), '') AS TEXTO 
+                        FROM BETHADBA.GEINICIAL AS I 
+                        WHERE I.CHAVE = 'DRE_descricao_resultado' 
+                          AND I.SECAO = 'Lucro_' || CAST({codi_emp} AS CHAR(7))) AS TD_LUCRO, 
+                 LATERAL(SELECT COALESCE(TRIM(MAX(CAST(I.VALOR AS VARCHAR(5000)))), '') AS TEXTO 
+                        FROM BETHADBA.GEINICIAL AS I 
+                        WHERE I.CHAVE = 'DRE_descricao_resultado' 
+                          AND I.SECAO = 'Prejuizo_' || CAST({codi_emp} AS CHAR(7))) AS TD_PREJUIZO, 
+                 LATERAL(SELECT COALESCE(TRIM(MAX(CAST(I.VALOR AS VARCHAR(5000)))), '') AS TITULO 
+                        FROM BETHADBA.GEINICIAL AS I 
+                        WHERE I.CHAVE = 'DRE' 
+                          AND I.SECAO = 'titulo_' || CAST({codi_emp} AS CHAR(7))) AS TD_TITULO, 
+                 LATERAL(SELECT COALESCE(TRIM(MAX(CAST(I.VALOR AS VARCHAR(5000)))), '') AS TITULO 
+                        FROM BETHADBA.GEINICIAL AS I 
+                        WHERE I.CHAVE = 'DRE' 
+                          AND I.SECAO = 'titulo_linha2_' || CAST({codi_emp} AS CHAR(7))) AS TD_TITULO_SEGUNDA_LINHA 
+            WHERE GEEMPRE.CODI_EMP = {codi_emp} 
+              AND CTGRUPOSDRE.OPERACAO IN (2,3)  -- Grupos de totalização
+              AND CTGRUPOSDRE.CODI_EMP = {codi_emp}
+              
+            ORDER BY 1, 2, 39, 3, 12
         """,
         
         "cabecalho_empresa": f"""
@@ -371,6 +583,8 @@ class DREGenerator:
             return 'COSTS'
         elif 'DESPESAS' in group_upper and 'ADMINISTRATIVA' in group_upper:
             return 'ADMINISTRATIVE EXPENSES'
+        elif 'DESPESAS' in group_upper and 'VENDAS' in group_upper:
+            return 'SALES EXPENSES'
         elif 'DESPESAS' in group_upper:
             return 'EXPENSES'
         elif 'DEPRECIAÇÃO' in group_upper or 'DEPRECIACAO' in group_upper:
@@ -416,25 +630,6 @@ class DREGenerator:
         ]
         
         return admin_block, contador_block
-        style = ParagraphStyle(
-            name='Signature', parent=self.styles['Normal'], fontName=self.style_normal.fontName, 
-            fontSize=6.4, leading=8, alignment=0
-        )
-        
-        admin_cpf = self.header_info['admin_cpf']
-        admin_cpf_fmt = f"{admin_cpf[:3]}.{admin_cpf[3:6]}.{admin_cpf[6:9]}-{admin_cpf[9:]}"
-        
-        if self.ingles:
-            contador_crc_fmt = f"Registered in CRC - SP under No. {self.header_info['contador_crc']}"
-            cpf_label = "SSN:"  # ← CPF pessoal = SSN em inglês
-        else:
-            contador_crc_fmt = f"Reg. no CRC - SP sob o No. {self.header_info['contador_crc']}"
-            cpf_label = "CPF:"
-
-        admin_block = [Paragraph("_______________________________________", style), Spacer(1, 4), Paragraph(self.header_info['admin_nome'], style), Paragraph(self.t['administrator'], style), Paragraph(f"{cpf_label} {admin_cpf_fmt}", style)]
-        contador_block = [Paragraph("_______________________________________", style), Spacer(1, 4), Paragraph(self.header_info['contador_nome'], style), Paragraph(contador_crc_fmt, style)]
-        
-        return admin_block, contador_block
 
     def _add_group_to_table(self, table_data, excel_data, group_name, group_total, is_calculated_subtotal=False):
         """Adiciona APENAS o grupo à tabela (sem contas individuais)"""
@@ -451,14 +646,12 @@ class DREGenerator:
             total_value = format_currency(group_total)
             excel_saldo = None
             excel_total = group_total
-            print(f"DEBUG: {translated_name} (SUBTOTAL) -> Saldo: vazio, Total: {total_value}")
         else:
             # Grupos reais do banco - nas duas colunas
             saldo_value = format_currency(group_total)
             total_value = format_currency(group_total)
             excel_saldo = group_total
             excel_total = group_total
-            print(f"DEBUG: {translated_name} (GRUPO REAL) -> Saldo: {saldo_value}, Total: {total_value}")
         
         table_data.append([
             Paragraph(f"<b>{translated_name}</b>", self.style_bold_left),
@@ -472,7 +665,7 @@ class DREGenerator:
         excel_data.append({'type': 'spacer', 'values': ['', '', '']})
 
     def prepare_table_data(self):
-        """VERSÃO SIMPLIFICADA - Apenas grupos, sem contas individuais"""
+        """VERSÃO CORRIGIDA - Ordem correta dos grupos"""
         
         # 1. Obter saldos das contas
         saldos = {item['CODI_CTA']: Decimal(str(item['SALDOATU'])) for item in self.data['saldos_contas']}
@@ -506,12 +699,6 @@ class DREGenerator:
         print(f"Grupos encontrados na DRE ({len(final_groups)} grupos):")
         for i, (grupo, total) in enumerate(final_groups.items(), 1):
             print(f"   {i}. '{grupo}' -> {format_currency(total)}")
-            print(f"      -> Revenue: {self._is_revenue_group(grupo)}")
-            print(f"      -> Tax: {self._is_tax_group(grupo)}")
-            print(f"      -> Cost: {self._is_cost_group(grupo)}")
-            print(f"      -> Operational: {self._is_operational_expense_group(grupo)}")
-            print(f"      -> Financial: {self._is_financial_group(grupo)}")
-            print(f"      -> Income Tax: {self._is_income_tax_group(grupo)}")
 
         # 6. Montar cabeçalho da tabela
         pdf_data = [[
@@ -527,7 +714,7 @@ class DREGenerator:
         
         spacer_row = {'type': 'spacer', 'values': ['', '', '']}
         
-        # 7. === LÓGICA CORRIGIDA - GRUPOS REAIS vs SUBTOTAIS ===
+        # 7. === PROCESSAMENTO NA ORDEM CORRETA ===
         
         # 1. RECEITA BRUTA (grupo real do banco)
         receita_bruta = Decimal('0.0')
@@ -535,7 +722,6 @@ class DREGenerator:
             if self._is_revenue_group(grupo_name):
                 receita_bruta = total
                 self._add_group_to_table(pdf_data, excel_data, grupo_name, receita_bruta, is_calculated_subtotal=False)
-                print(f"DEBUG: Encontrou RECEITA BRUTA: {grupo_name} = {format_currency(receita_bruta)}")
                 break
 
         # 2. IMPOSTOS E DEDUÇÕES (grupo real do banco)
@@ -544,13 +730,9 @@ class DREGenerator:
             if self._is_tax_group(grupo_name):
                 impostos = total
                 self._add_group_to_table(pdf_data, excel_data, grupo_name, impostos, is_calculated_subtotal=False)
-                print(f"DEBUG: Encontrou IMPOSTOS: {grupo_name} = {format_currency(impostos)}")
                 break
-        
-        if impostos.is_zero():
-            print("DEBUG: ATENÇÃO - Nenhum grupo de impostos foi identificado!")
 
-        # SUBTOTAL: RECEITA LÍQUIDA (subtotal calculado - apenas Total)
+        # SUBTOTAL: RECEITA LÍQUIDA
         receita_liquida = receita_bruta + impostos
         net_revenue_text = "NET REVENUE" if self.ingles else "RECEITA LÍQUIDA"
         pdf_data.extend([[
@@ -559,7 +741,6 @@ class DREGenerator:
             Paragraph(f"<b>{format_currency(receita_liquida)}</b>", self.style_bold_right)
         ], ['','','']])
         excel_data.extend([{'type': 'total', 'values': [net_revenue_text, None, receita_liquida]}, spacer_row])
-        print(f"DEBUG: RECEITA LÍQUIDA calculada: {format_currency(receita_liquida)} = {format_currency(receita_bruta)} + {format_currency(impostos)}")
 
         # 3. CUSTOS CMV/CSV (grupos reais do banco)
         custo_total = Decimal('0.0')
@@ -567,9 +748,8 @@ class DREGenerator:
             if self._is_cost_group(grupo_name):
                 custo_total += total
                 self._add_group_to_table(pdf_data, excel_data, grupo_name, total, is_calculated_subtotal=False)
-                print(f"DEBUG: Encontrou CUSTO: {grupo_name} = {format_currency(total)}")
 
-        # SUBTOTAL: LUCRO BRUTO (subtotal calculado - apenas Total)
+        # SUBTOTAL: LUCRO BRUTO
         lucro_bruto = receita_liquida + custo_total
         gross_profit_text = "GROSS PROFIT" if self.ingles else "LUCRO BRUTO"
         pdf_data.extend([[
@@ -578,25 +758,35 @@ class DREGenerator:
             Paragraph(f"<b>{format_currency(lucro_bruto)}</b>", self.style_bold_right)
         ], ['','','']])
         excel_data.extend([{'type': 'total', 'values': [gross_profit_text, None, lucro_bruto]}, spacer_row])
-        print(f"DEBUG: LUCRO BRUTO calculado: {format_currency(lucro_bruto)} = {format_currency(receita_liquida)} + {format_currency(custo_total)}")
 
-        # 4. Calcular total das DESPESAS ADMINISTRATIVAS (grupos reais do banco)
-        despesas_administrativas_total = Decimal('0.0')
+        # 4. Calcular total das DESPESAS OPERACIONAIS (somar administrativas + vendas)
+        despesas_administrativas = Decimal('0.0')
+        despesas_vendas = Decimal('0.0')
+        
         for grupo_name, total in final_groups.items():
-            if self._is_operational_expense_group(grupo_name):
-                despesas_administrativas_total += total
+            if self._is_administrative_expense_group(grupo_name):
+                despesas_administrativas += total
+            elif self._is_sales_expense_group(grupo_name):
+                despesas_vendas += total
 
-        # 5. NOVO GRUPO: DESPESAS OPERACIONAIS (subtotal calculado = despesas administrativas) - ANTES das administrativas
+        despesas_operacionais_total = despesas_administrativas + despesas_vendas
+
+        # 5. NOVO GRUPO: DESPESAS OPERACIONAIS (subtotal calculado) - ANTES das específicas
         operational_expenses_text = "OPERATING EXPENSES" if self.ingles else "DESPESAS OPERACIONAIS"
-        self._add_group_to_table(pdf_data, excel_data, operational_expenses_text, despesas_administrativas_total, is_calculated_subtotal=True)
+        self._add_group_to_table(pdf_data, excel_data, operational_expenses_text, despesas_operacionais_total, is_calculated_subtotal=True)
 
-        # 6. DESPESAS ADMINISTRATIVAS (grupos reais do banco) - DEPOIS das operacionais
+        # 6. DESPESAS ADMINISTRATIVAS (grupos reais do banco) - APÓS as operacionais
         for grupo_name, total in final_groups.items():
-            if self._is_operational_expense_group(grupo_name):
+            if self._is_administrative_expense_group(grupo_name):
                 self._add_group_to_table(pdf_data, excel_data, grupo_name, total, is_calculated_subtotal=False)
 
-        # SUBTOTAL: RESULTADO OPERACIONAL (EBITDA) (subtotal calculado - apenas Total)
-        resultado_ebitda = lucro_bruto + despesas_administrativas_total
+        # 7. DESPESAS COM VENDAS (grupos reais do banco) - APÓS as administrativas
+        for grupo_name, total in final_groups.items():
+            if self._is_sales_expense_group(grupo_name):
+                self._add_group_to_table(pdf_data, excel_data, grupo_name, total, is_calculated_subtotal=False)
+
+        # SUBTOTAL: RESULTADO OPERACIONAL (EBITDA)
+        resultado_ebitda = lucro_bruto + despesas_operacionais_total
         operating_result_text = "OPERATING RESULT (EBITDA)" if self.ingles else "RESULTADO OPERACIONAL (EBITDA)"
         pdf_data.extend([[
             Paragraph(f"<b>{operating_result_text}</b>", self.style_bold_left), 
@@ -605,21 +795,21 @@ class DREGenerator:
         ], ['','','']])
         excel_data.extend([{'type': 'total', 'values': [operating_result_text, None, resultado_ebitda]}, spacer_row])
         
-        # 7. DEPRECIAÇÃO E AMORTIZAÇÃO (grupos reais do banco)
+        # 8. DEPRECIAÇÃO E AMORTIZAÇÃO
         deprec_amort = Decimal('0.0')
         for grupo_name, total in final_groups.items():
             if self._is_depreciation_group(grupo_name):
                 deprec_amort += total
                 self._add_group_to_table(pdf_data, excel_data, grupo_name, total, is_calculated_subtotal=False)
         
-        # 8. RESULTADO FINANCEIRO (grupos reais do banco)
+        # 9. RESULTADO FINANCEIRO
         resultado_financeiro = Decimal('0.0')
         for grupo_name, total in final_groups.items():
             if self._is_financial_group(grupo_name):
                 resultado_financeiro += total
                 self._add_group_to_table(pdf_data, excel_data, grupo_name, total, is_calculated_subtotal=False)
 
-        # SUBTOTAL: LUCRO ANTES DOS IMPOSTOS (subtotal calculado - apenas Total)
+        # SUBTOTAL: LUCRO ANTES DOS IMPOSTOS
         lucro_antes_impostos = resultado_ebitda + deprec_amort + resultado_financeiro
         profit_before_taxes_text = "PROFIT BEFORE TAXES" if self.ingles else "LUCRO ANTES DOS IMPOSTOS"
         pdf_data.extend([[
@@ -629,17 +819,15 @@ class DREGenerator:
         ], ['','','']])
         excel_data.extend([{'type': 'total', 'values': [profit_before_taxes_text, None, lucro_antes_impostos]}, spacer_row])
 
-        # 8. IMPOSTOS SOBRE O LUCRO (grupos reais do banco)
+        # 10. IMPOSTOS SOBRE O LUCRO
         impostos_lucro = Decimal('0.0')
         for grupo_name, total in final_groups.items():
             if self._is_income_tax_group(grupo_name):
                 impostos_lucro += total
                 self._add_group_to_table(pdf_data, excel_data, grupo_name, total, is_calculated_subtotal=False)
 
-        # 9. Resultado final
+        # 11. Resultado final
         resultado_final = lucro_antes_impostos + impostos_lucro
-        
-        print(f"Resultado Final: {format_currency(resultado_final)}")
         
         return pdf_data, excel_data, resultado_final
     
@@ -678,18 +866,35 @@ class DREGenerator:
         
         return has_cost and not has_admin
 
-    def _is_operational_expense_group(self, group_name):
-        """Identifica grupos de despesas operacionais (administrativas, vendas, etc.)"""
-        keywords_pt = ["DESPESAS ADMINISTRATIVAS", "DESPESAS", "ADMINISTRATIVA"]
-        keywords_en = ["ADMINISTRATIVE EXPENSES", "ADMINISTRATIVE", "EXPENSES"]
-        exclude_keywords = ["DEPRECIA", "AMORTIZ", "FINANCEIRO", "FINANCIAL"]
+    def _is_administrative_expense_group(self, group_name):
+        """Identifica APENAS despesas administrativas (não vendas)"""
+        keywords_pt = ["DESPESAS ADMINISTRATIVAS", "ADMINISTRATIVA"]
+        keywords_en = ["ADMINISTRATIVE EXPENSES", "ADMINISTRATIVE"]
+        exclude_keywords = ["VENDAS", "SALES", "DEPRECIA", "AMORTIZ", "FINANCEIRO", "FINANCIAL"]
         
         group_upper = group_name.upper()
-        has_expense = (any(k in group_upper for k in keywords_pt) or 
-                    any(k in group_upper for k in keywords_en))
+        has_admin = (any(k in group_upper for k in keywords_pt) or 
+                     any(k in group_upper for k in keywords_en))
         has_exclude = any(k in group_upper for k in exclude_keywords)
         
-        return has_expense and not has_exclude
+        return has_admin and not has_exclude
+
+    def _is_sales_expense_group(self, group_name):
+        """Identifica APENAS despesas com vendas"""
+        keywords_pt = ["DESPESAS COM VENDAS", "VENDAS"]
+        keywords_en = ["SALES EXPENSES", "SALES"]
+        exclude_keywords = ["ADMINISTRATIVA", "ADMINISTRATIVE", "DEPRECIA", "AMORTIZ", "FINANCEIRO", "FINANCIAL"]
+        
+        group_upper = group_name.upper()
+        has_sales = (any(k in group_upper for k in keywords_pt) or 
+                     any(k in group_upper for k in keywords_en))
+        has_exclude = any(k in group_upper for k in exclude_keywords)
+        
+        return has_sales and not has_exclude
+
+    def _is_operational_expense_group(self, group_name):
+        """Identifica grupos de despesas operacionais (administrativas OU vendas)"""
+        return self._is_administrative_expense_group(group_name) or self._is_sales_expense_group(group_name)
 
     def _is_depreciation_group(self, group_name):
         """Identifica grupos de depreciação e amortização"""
@@ -800,8 +1005,6 @@ class DREGenerator:
 
         # Pular algumas linhas antes das assinaturas
         current_row += 4
-        
-        print(f"DEBUG: Adicionando assinaturas na linha {current_row}")
 
         # === ADICIONAR ASSINATURAS ===
         admin_cpf = self.header_info['admin_cpf']
@@ -843,8 +1046,6 @@ class DREGenerator:
         ws[f'A{current_row}'] = f"{cpf_label} {admin_cpf_fmt}"
         ws[f'A{current_row}'].font = font_small
         ws[f'A{current_row}'].alignment = Alignment(horizontal='center')
-
-        print(f"DEBUG: Assinaturas adicionadas até a linha {current_row}")
 
         ws.column_dimensions['A'].width = 70
         ws.column_dimensions['B'].width = 20
@@ -1003,5 +1204,6 @@ def gerar_dre(codi_emp, data_inicial, data_final, ingles=False):
         return None
 
 
-
-gerar_dre(2286, "2025-05-01", "2025-05-31")
+# EXEMPLO DE USO
+if __name__ == "__main__":
+    gerar_dre(2286, "2025-05-01", "2025-05-31")

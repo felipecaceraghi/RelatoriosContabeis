@@ -83,11 +83,20 @@ export default function Home(){
     candidates.push('')
     candidates.push('http://localhost:3000')
 
+    // Always add bypass-tunnel-reminder header for localtunnel compatibility
+    const mergedOptions = {
+      ...options,
+      headers: {
+        ...(options.headers || {}),
+        'bypass-tunnel-reminder': '1',
+      }
+    }
+
     for(const base of candidates){
       const url = build(base)
       tried.push(url)
       try{
-        const res = await fetch(url, options)
+        const res = await fetch(url, mergedOptions)
         // if not ok, but it's HTML from Next, try next
         const contentType = res.headers.get('content-type') || ''
         if(!res.ok || contentType.includes('text/html')){
