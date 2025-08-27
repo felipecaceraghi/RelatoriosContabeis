@@ -1,0 +1,17 @@
+{
+  "id": "2a832f32-0b9e-43bc-b04d-ee12ef393acf",
+  "type": "balancete",
+  "payload": {
+    "codiEmp": 124,
+    "dataInicial": "2025-01-01",
+    "dataFinal": "2025-07-31",
+    "ingles": false
+  },
+  "status": "failed",
+  "progress": 0,
+  "result": null,
+  "error": "invalid syntax (file_renamer.py, line 154)",
+  "createdAt": 1756304375245,
+  "startedAt": 1756304375250,
+  "completedAt": 1756304376048
+}

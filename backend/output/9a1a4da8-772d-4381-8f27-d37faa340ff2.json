@@ -1,0 +1,19 @@
+{
+  "id": "9a1a4da8-772d-4381-8f27-d37faa340ff2",
+  "type": "comparativo",
+  "payload": {
+    "codiEmp": 124,
+    "dataInicial": "2025-07-01",
+    "dataFinal": "2025-07-31",
+    "ingles": false
+  },
+  "status": "complete",
+  "progress": 100,
+  "result": {
+    "raw": "\r\n=== GERANDO RELATÓRIO ===\r\nEmpresa: 124\r\nPeríodo: 2025-07-01 a 2025-07-31\r\nIdioma: Português\r\n==================================================\r\nModo: Mês único\r\nPeríodos: ['07/2025']\r\nExecutando query 'info_empresa'...\r\nQuery 'info_empresa' retornou 1 linhas.\r\n\r\nProcessando dados para mês único...\r\nExecutando query 'dados_relatorio'...\r\nQuery 'dados_relatorio' retornou 498 linhas.\r\nProcessando 498 registros do banco de dados...\r\nFiltro aplicado: 382 contas zeradas removidas. Restam 116 contas.\r\nGerando Excel mês único com 116 linhas...\r\nRelatório Excel mês único 'Comparativo_Movimento_124_20250701_20250731_20250827_111433.xlsx' gerado com sucesso.\r\n[\"Comparativo_Movimento_124_20250701_20250731_20250827_111433.xlsx\"]\r\n",
+    "code": 0
+  },
+  "error": null,
+  "createdAt": 1756304068469,
+  "startedAt": 1756304073255
+}

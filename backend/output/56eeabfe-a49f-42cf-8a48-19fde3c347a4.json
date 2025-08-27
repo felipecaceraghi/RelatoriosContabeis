@@ -1,0 +1,19 @@
+{
+  "id": "56eeabfe-a49f-42cf-8a48-19fde3c347a4",
+  "type": "balancete",
+  "payload": {
+    "codiEmp": 90124,
+    "dataInicial": "2025-01-01",
+    "dataFinal": "2025-05-31",
+    "ingles": true
+  },
+  "status": "complete",
+  "progress": 100,
+  "result": {
+    "raw": "============================================================\r\n🏢 SISTEMA DE GERAÇÃO DE BALANCETE CONTÁBIL\r\n============================================================\r\n\r\n📋 PARÂMETROS CONFIGURADOS:\r\n   • Empresa: 90124\r\n   • Período: 2025-01-01 a 2025-05-31\r\n   • Idioma: Inglês\r\n   • Assinatura de Arquivo: 20250827_134136\r\n\r\n🔍 Buscando parâmetros de configuração...\r\n\r\n--- Iniciando busca de parâmetros para Empresa: 90124 ---\r\nPasso 1: Buscando filiais para consolidação...\r\n  > Radical do CNPJ encontrado: \r\n  > Filiais encontradas para consolidação: [517]\r\n  > Lista final de filiais para a consulta: [90124, 517]\r\nPasso 2: Verificando ordenação especial...\r\n  > Nenhuma regra de ordenação especial aplicada.\r\n\r\n--- Coleta de parâmetros finalizada com sucesso! ---\r\n\r\n⚡ Gerando consulta SQL otimizada...\r\n   ✅ Filtros rigorosos serão aplicados na camada de negócios (Python)\r\n   📊 Consulta SQL traz TODOS os dados - filtros aplicados depois\r\n   🌐 Modo inglês ativado - usando traduções da tabela CTCONTAS_IDIOMAS\r\n\r\n🔄 Executando consulta única consolidada...\r\n📊 Buscando dados do relatório...\r\n   ✅ 0 linhas brutas encontradas em 0.23s\r\n\r\n⚠️ AVISO: Nenhuma linha retornada na consulta. O relatório não será gerado.\r\n🔌 Fechando a conexão com o banco de dados.\r\nnull\r\n",
+    "code": 0
+  },
+  "error": null,
+  "createdAt": 1756312858013,
+  "startedAt": 1756312896028
+}

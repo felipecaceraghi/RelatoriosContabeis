@@ -1,0 +1,17 @@
+{
+  "id": "90db93ff-7f17-4383-bbe6-23cde9c6c504",
+  "type": "balancete",
+  "payload": {
+    "codiEmp": 124,
+    "dataInicial": "2025-07-01",
+    "dataFinal": "2025-07-31",
+    "ingles": false
+  },
+  "status": "failed",
+  "progress": 0,
+  "result": null,
+  "error": "No module named 'BALANCETE'",
+  "createdAt": 1756304057719,
+  "startedAt": 1756304057722,
+  "completedAt": 1756304057799
+}

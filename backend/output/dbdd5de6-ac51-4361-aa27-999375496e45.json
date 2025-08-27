@@ -1,0 +1,19 @@
+{
+  "id": "dbdd5de6-ac51-4361-aa27-999375496e45",
+  "type": "comparativo",
+  "payload": {
+    "codiEmp": 2018,
+    "dataInicial": "2025-01-01",
+    "dataFinal": "2025-01-31",
+    "ingles": false
+  },
+  "status": "complete",
+  "progress": 100,
+  "result": {
+    "raw": "\r\n=== GERANDO RELATÓRIO ===\r\nEmpresa: 2018\r\nPeríodo: 2025-01-01 a 2025-01-31\r\nIdioma: Português\r\n==================================================\r\nModo: Mês único\r\nPeríodos: ['01/2025']\r\nExecutando query 'info_empresa'...\r\nQuery 'info_empresa' retornou 1 linhas.\r\n\r\nProcessando dados para mês único...\r\nExecutando query 'dados_relatorio'...\r\nQuery 'dados_relatorio' retornou 552 linhas.\r\nProcessando 552 registros do banco de dados...\r\nFiltro aplicado: 368 contas zeradas removidas. Restam 184 contas.\r\nGerando Excel mês único com 184 linhas...\r\nRelatório Excel mês único 'Comparativo_Movimento_2018_20250101_20250131_20250827_133545.xlsx' gerado com sucesso.\r\n\r\n📝 Renomeando arquivos...\r\nDebug: Iniciando renomeamento de Comparativo_Movimento_2018_20250101_20250131_20250827_133545.xlsx\r\nDebug: Caminho completo: Comparativo_Movimento_2018_20250101_20250131_20250827_133545.xlsx\r\nDebug: Arquivo existe: True\r\nDebug: Parâmetros - codi_emp: 2018, data_inicial: 2025-01-01, data_final: 2025-01-31, idioma_ingles: False\r\nDebug: Tipo de relatório identificado: comparativo\r\nDebug: Nome da empresa: CCIC DO BRASIL\r\nDebug: Período 2025-01-01 a 2025-01-31, is_acumulado = True\r\nDebug: Novo nome gerado: CCIC DO BRASIL - Comparativo de Resultado Acumulado 01.2025 - Emitido em 27.08.2025.xlsx\r\nDebug: Novo caminho: CCIC DO BRASIL - Comparativo de Resultado Acumulado 01.2025 - Emitido em 27.08.2025.xlsx\r\nArquivo renomeado: Comparativo_Movimento_2018_20250101_20250131_20250827_133545.xlsx -> CCIC DO BRASIL - Comparativo de Resultado Acumulado 01.2025 - Emitido em 27.08.2025.xlsx\r\nArquivo movido para: R:\\\\Acesso Digital\\2018 - CCIC DO BRASIL - MATRIZ\\02 - Contábil\\2025\\01 - Fechamento Contábil\\01\\03 - Relatórios contábeis\\GERADO PELO ROBO\\CCIC DO BRASIL - Comparativo de Resultado Acumulado 01.2025 - Emitido em 27.08.2025.xlsx\r\n[\"CCIC DO BRASIL - Comparativo de Resultado Acumulado 01.2025 - Emitido em 27.08.2025.xlsx\"]\r\n",
+    "code": 0
+  },
+  "error": null,
+  "createdAt": 1756312542530,
+  "startedAt": 1756312545561
+}

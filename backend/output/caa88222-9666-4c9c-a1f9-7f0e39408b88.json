@@ -1,0 +1,19 @@
+{
+  "id": "caa88222-9666-4c9c-a1f9-7f0e39408b88",
+  "type": "dre",
+  "payload": {
+    "codiEmp": 124,
+    "dataInicial": "2025-07-01",
+    "dataFinal": "2025-07-31",
+    "ingles": false
+  },
+  "status": "complete",
+  "progress": 100,
+  "result": {
+    "raw": "{\"debug_scripts_dir\": \"c:\\\\Users\\\\estatistica007\\\\Documents\\\\nextProjects\\\\RelatoriosContabeis\\\\backend\\\\scripts\", \"debug_sys_path\": [\"c:\\\\Users\\\\estatistica007\\\\Documents\\\\nextProjects\\\\RelatoriosContabeis\\\\backend\\\\src\\\\services\", \"C:\\\\Users\\\\estatistica007\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python312\\\\python312.zip\", \"C:\\\\Users\\\\estatistica007\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python312\\\\DLLs\", \"C:\\\\Users\\\\estatistica007\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python312\\\\Lib\", \"C:\\\\Users\\\\estatistica007\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python312\", \"C:\\\\Users\\\\estatistica007\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python312\\\\Lib\\\\site-packages\", \"C:\\\\Users\\\\estatistica007\\\\Documents\\\\mcp3\\\\excel-mcp-server\\\\src\", \"C:\\\\Users\\\\estatistica007\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python312\\\\Lib\\\\site-packages\\\\win32\", \"C:\\\\Users\\\\estatistica007\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python312\\\\Lib\\\\site-packages\\\\win32\\\\lib\", \"C:\\\\Users\\\\estatistica007\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python312\\\\Lib\\\\site-packages\\\\Pythonwin\"]}\r\n{\"error\": \"No module named 'DRE'\"}\r\n",
+    "code": 1
+  },
+  "error": null,
+  "createdAt": 1756296640015,
+  "startedAt": 1756296640292
+}

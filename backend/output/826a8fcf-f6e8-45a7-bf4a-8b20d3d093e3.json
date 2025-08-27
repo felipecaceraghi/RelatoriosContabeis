@@ -1,0 +1,19 @@
+{
+  "id": "826a8fcf-f6e8-45a7-bf4a-8b20d3d093e3",
+  "type": "comparativo",
+  "payload": {
+    "codiEmp": 90124,
+    "dataInicial": "2025-01-01",
+    "dataFinal": "2025-05-31",
+    "ingles": false
+  },
+  "status": "complete",
+  "progress": 100,
+  "result": {
+    "raw": "\r\n=== GERANDO RELATÓRIO ===\r\nEmpresa: 90124\r\nPeríodo: 2025-01-01 a 2025-05-31\r\nIdioma: Português\r\n==================================================\r\nModo: Multi-meses\r\nPeríodos: ['01/2025', '02/2025', '03/2025', '04/2025', '05/2025']\r\nExecutando query 'info_empresa'...\r\nQuery 'info_empresa' retornou 1 linhas.\r\n\r\nProcessando dados para múltiplos meses...\r\nProcessando período: 01/2025\r\nProcessando período: 02/2025\r\nProcessando período: 03/2025\r\nProcessando período: 04/2025\r\nProcessando período: 05/2025\r\nFiltro aplicado: 0 contas zeradas removidas. Restam 0 contas.\r\n\r\n!!! ATENÇÃO: A lista de dados para o relatório está vazia após o processamento.\r\n[]\r\n",
+    "code": 0
+  },
+  "error": null,
+  "createdAt": 1756312858029,
+  "startedAt": 1756312896640
+}

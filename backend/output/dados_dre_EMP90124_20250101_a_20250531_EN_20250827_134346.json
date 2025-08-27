@@ -1,0 +1,18 @@
+{
+  "estrutura_dre_completa_tipo2": [],
+  "cabecalho_empresa": [],
+  "cabecalho_contador": [
+    {
+      "NOME_CON": "HUGO GUILHERME ALMEIDA SANTOS",
+      "RCRC_CON": "1SP335860/O-8",
+      "CPFC_CON": "42845265883"
+    }
+  ],
+  "cabecalho_administrador": [
+    {
+      "RLEG_EMP": "GILBERTO LAVIERO MOSCA JUNIOR",
+      "CPF_LEG_EMP": "17645740876"
+    }
+  ],
+  "saldos_contas": []
+}

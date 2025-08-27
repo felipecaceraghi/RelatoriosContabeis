@@ -1,0 +1,17 @@
+{
+  "id": "920aa928-a7dc-4ab8-ad49-f99cf1ca700e",
+  "type": "dre",
+  "payload": {
+    "codiEmp": 124,
+    "dataInicial": "2025-01-01",
+    "dataFinal": "2025-07-31",
+    "ingles": false
+  },
+  "status": "failed",
+  "progress": 0,
+  "result": null,
+  "error": "No module named 'DRE'",
+  "createdAt": 1756304057846,
+  "startedAt": 1756304057995,
+  "completedAt": 1756304058057
+}

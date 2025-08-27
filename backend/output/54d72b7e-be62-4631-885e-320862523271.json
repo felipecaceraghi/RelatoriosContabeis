@@ -1,0 +1,17 @@
+{
+  "id": "54d72b7e-be62-4631-885e-320862523271",
+  "type": "razao",
+  "payload": {
+    "codiEmp": 124,
+    "dataInicial": "2025-07-01",
+    "dataFinal": "2025-07-31",
+    "ingles": false
+  },
+  "status": "failed",
+  "progress": 0,
+  "result": null,
+  "error": "No module named 'RAZAO'",
+  "createdAt": 1756303866597,
+  "startedAt": 1756303866801,
+  "completedAt": 1756303866883
+}

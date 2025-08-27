@@ -1,7 +1,12 @@
-// Service "razao" - placeholder for calling Python function later
+const { runPython } = require('./pythonHelper');
+
 async function run({ codiEmp, dataInicial, dataFinal, ingles }) {
-  // Here you'd call a Python function (e.g., spawn a process or use RPC)
-  return Promise.resolve({ message: 'razao service called', codiEmp, dataInicial, dataFinal, ingles });
+  // Map to Python script RAZAO.py -> gerar_relatorio_razao_com_dump
+  const moduleName = 'RAZAO';
+  const funcName = 'gerar_relatorio_razao_com_dump';
+  const payload = { codi_emp: codiEmp, data_inicial: dataInicial, data_final: dataFinal, filiais: false, idioma_ingles: ingles };
+  const res = await runPython(moduleName, funcName, payload);
+  return res;
 }
 
 module.exports = { run };

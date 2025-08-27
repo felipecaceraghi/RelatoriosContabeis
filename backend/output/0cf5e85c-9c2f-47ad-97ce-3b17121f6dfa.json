@@ -1,0 +1,17 @@
+{
+  "id": "0cf5e85c-9c2f-47ad-97ce-3b17121f6dfa",
+  "type": "dre",
+  "payload": {
+    "codiEmp": 124,
+    "dataInicial": "2025-07-01",
+    "dataFinal": "2025-07-31",
+    "ingles": true
+  },
+  "status": "failed",
+  "progress": 0,
+  "result": null,
+  "error": "invalid syntax (file_renamer.py, line 154)",
+  "createdAt": 1756304375371,
+  "startedAt": 1756304377753,
+  "completedAt": 1756304378231
+}

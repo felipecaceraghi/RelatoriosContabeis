@@ -1,0 +1,19 @@
+{
+  "id": "16b6a118-491f-4e1a-9a31-f83741c3d8ba",
+  "type": "comparativo",
+  "payload": {
+    "codiEmp": 90124,
+    "dataInicial": "2025-05-01",
+    "dataFinal": "2025-05-31",
+    "ingles": false
+  },
+  "status": "complete",
+  "progress": 100,
+  "result": {
+    "raw": "\r\n=== GERANDO RELATÓRIO ===\r\nEmpresa: 90124\r\nPeríodo: 2025-05-01 a 2025-05-31\r\nIdioma: Português\r\n==================================================\r\nModo: Mês único\r\nPeríodos: ['05/2025']\r\nExecutando query 'info_empresa'...\r\nQuery 'info_empresa' retornou 1 linhas.\r\n\r\nProcessando dados para mês único...\r\nExecutando query 'dados_relatorio'...\r\nQuery 'dados_relatorio' retornou 0 linhas.\r\nNão foi possível obter os dados financeiros para gerar o relatório.\r\n[]\r\n",
+    "code": 0
+  },
+  "error": null,
+  "createdAt": 1756312972500,
+  "startedAt": 1756313024451
+}

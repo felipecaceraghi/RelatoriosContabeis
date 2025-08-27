@@ -1,0 +1,17 @@
+{
+  "id": "3779ebf9-2d13-4db6-a8c7-7821a67a4583",
+  "type": "razao",
+  "payload": {
+    "codiEmp": 124,
+    "dataInicial": "2025-07-01",
+    "dataFinal": "2025-07-31",
+    "ingles": false
+  },
+  "status": "failed",
+  "progress": 0,
+  "result": null,
+  "error": "invalid syntax (file_renamer.py, line 154)",
+  "createdAt": 1756304375398,
+  "startedAt": 1756304378236,
+  "completedAt": 1756304378949
+}

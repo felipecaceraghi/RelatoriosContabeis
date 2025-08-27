@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const balanceteService = require('../services/balancete');
+const { enqueue } = require('../services/jobQueue');
 
 router.post('/', async (req, res) => {
   const { codiEmp, dataInicial, dataFinal, ingles } = req.body;
@@ -9,8 +10,8 @@ router.post('/', async (req, res) => {
   }
 
   try {
-    const result = await balanceteService.run({ codiEmp, dataInicial, dataFinal, ingles });
-    res.json({ success: true, data: result });
+    const processing_id = enqueue('balancete', { codiEmp, dataInicial, dataFinal, ingles });
+    res.json({ success: true, processing_id });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }

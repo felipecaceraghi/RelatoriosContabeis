@@ -1,0 +1,17 @@
+{
+  "id": "f05b04b7-767f-4035-81dd-d7e87543b881",
+  "type": "comparativo",
+  "payload": {
+    "codiEmp": 124,
+    "dataInicial": "2025-07-01",
+    "dataFinal": "2025-07-31",
+    "ingles": true
+  },
+  "status": "failed",
+  "progress": 0,
+  "result": null,
+  "error": "invalid syntax (file_renamer.py, line 154)",
+  "createdAt": 1756304375324,
+  "startedAt": 1756304376858,
+  "completedAt": 1756304377288
+}

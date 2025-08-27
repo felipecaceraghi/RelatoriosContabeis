@@ -1,0 +1,19 @@
+{
+  "id": "e6e079aa-ada3-43af-a3bb-e98ec8ebc3a4",
+  "type": "comparativo",
+  "payload": {
+    "codiEmp": 124,
+    "dataInicial": "2025-07-01",
+    "dataFinal": "2025-07-31",
+    "ingles": false
+  },
+  "status": "complete",
+  "progress": 100,
+  "result": {
+    "raw": "\r\n=== GERANDO RELATÓRIO ===\r\nEmpresa: 124\r\nPeríodo: 2025-07-01 a 2025-07-31\r\nIdioma: Português\r\n==================================================\r\nModo: Mês único\r\nPeríodos: ['07/2025']\r\nExecutando query 'info_empresa'...\r\nQuery 'info_empresa' retornou 1 linhas.\r\n\r\nProcessando dados para mês único...\r\nExecutando query 'dados_relatorio'...\r\nQuery 'dados_relatorio' retornou 498 linhas.\r\nProcessando 498 registros do banco de dados...\r\nFiltro aplicado: 382 contas zeradas removidas. Restam 116 contas.\r\nGerando Excel mês único com 116 linhas...\r\nRelatório Excel mês único 'Comparativo_Movimento_124_20250701_20250731_20250827_125050.xlsx' gerado com sucesso.\r\n\r\n📝 Renomeando arquivos...\r\nDebug: Iniciando renomeamento de Comparativo_Movimento_124_20250701_20250731_20250827_125050.xlsx\r\nDebug: Caminho completo: Comparativo_Movimento_124_20250701_20250731_20250827_125050.xlsx\r\nDebug: Arquivo existe: True\r\nDebug: Parâmetros - codi_emp: 124, data_inicial: 2025-07-01, data_final: 2025-07-31, idioma_ingles: False\r\nDebug: Tipo de relatório identificado: comparativo\r\nDebug: Período 2025-07-01 a 2025-07-31, is_acumulado = False\r\nDebug: Novo nome gerado: 124 - Comparativo de Resultado Acumulado 07.2025 - Emitido em 27.08.2025.xlsx\r\nDebug: Novo caminho: 124 - Comparativo de Resultado Acumulado 07.2025 - Emitido em 27.08.2025.xlsx\r\nArquivo renomeado: Comparativo_Movimento_124_20250701_20250731_20250827_125050.xlsx -> 124 - Comparativo de Resultado Acumulado 07.2025 - Emitido em 27.08.2025.xlsx\r\n[\"124 - Comparativo de Resultado Acumulado 07.2025 - Emitido em 27.08.2025.xlsx\"]\r\n",
+    "code": 0
+  },
+  "error": null,
+  "createdAt": 1756309845248,
+  "startedAt": 1756309849835
+}

@@ -1,0 +1,19 @@
+{
+  "id": "a113b05d-6c61-4a0f-af87-838b4dec3226",
+  "type": "comparativo",
+  "payload": {
+    "codiEmp": 2287,
+    "dataInicial": "2025-01-01",
+    "dataFinal": "2025-05-31",
+    "ingles": false
+  },
+  "status": "complete",
+  "progress": 100,
+  "result": {
+    "raw": "\r\n=== GERANDO RELATÓRIO ===\r\nEmpresa: 2287\r\nPeríodo: 2025-01-01 a 2025-05-31\r\nIdioma: Português\r\n==================================================\r\nModo: Multi-meses\r\nPeríodos: ['01/2025', '02/2025', '03/2025', '04/2025', '05/2025']\r\nExecutando query 'info_empresa'...\r\nQuery 'info_empresa' retornou 1 linhas.\r\n\r\nProcessando dados para múltiplos meses...\r\nProcessando período: 01/2025\r\nProcessando período: 02/2025\r\nProcessando período: 03/2025\r\nProcessando período: 04/2025\r\nProcessando período: 05/2025\r\nFiltro aplicado: 407 contas zeradas removidas. Restam 58 contas.\r\nGerando Excel multi-meses com 58 linhas...\r\nRelatório Excel multi-meses 'Comparativo_Movimento_2287_20250101_20250531_20250827_134128.xlsx' gerado com sucesso.\r\n\r\n📝 Renomeando arquivos...\r\nDebug: Iniciando renomeamento de Comparativo_Movimento_2287_20250101_20250531_20250827_134128.xlsx\r\nDebug: Caminho completo: Comparativo_Movimento_2287_20250101_20250531_20250827_134128.xlsx\r\nDebug: Arquivo existe: True\r\nDebug: Parâmetros - codi_emp: 2287, data_inicial: 2025-01-01, data_final: 2025-05-31, idioma_ingles: False\r\nDebug: Tipo de relatório identificado: comparativo\r\nDebug: Nome da empresa: SANTA HELENA 1\r\nDebug: Período 2025-01-01 a 2025-05-31, is_acumulado = True\r\nDebug: Novo nome gerado: SANTA HELENA 1 - Comparativo de Resultado Acumulado 05.2025 - Emitido em 27.08.2025.xlsx\r\nDebug: Novo caminho: SANTA HELENA 1 - Comparativo de Resultado Acumulado 05.2025 - Emitido em 27.08.2025.xlsx\r\nArquivo renomeado: Comparativo_Movimento_2287_20250101_20250531_20250827_134128.xlsx -> SANTA HELENA 1 - Comparativo de Resultado Acumulado 05.2025 - Emitido em 27.08.2025.xlsx\r\nArquivo movido para: R:\\\\Acesso Digital\\2287 - GUESTIER SANTA HELENA 1 (GRUPO GUESTIER)\\02 - Contábil\\2025\\01 - Fechamento Contábil\\05\\03 - Relatórios contábeis\\GERADO PELO ROBO\\SANTA HELENA 1 - Comparativo de Resultado Acumulado 05.2025 - Emitido em 27.08.2025.xlsx\r\n[\"SANTA HELENA 1 - Comparativo de Resultado Acumulado 05.2025 - Emitido em 27.08.2025.xlsx\"]\r\n",
+    "code": 0
+  },
+  "error": null,
+  "createdAt": 1756312857902,
+  "startedAt": 1756312888365
+}

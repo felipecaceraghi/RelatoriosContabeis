@@ -7,6 +7,8 @@
     "start": "node src/server.js"
   },
   "dependencies": {
-    "express": "^4.18.2"
+  "express": "^4.18.2",
+  "odbc": "^2.4.1",
+  "cors": "^2.8.5"
   }
 }

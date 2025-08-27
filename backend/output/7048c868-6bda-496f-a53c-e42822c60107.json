@@ -1,0 +1,17 @@
+{
+  "id": "7048c868-6bda-496f-a53c-e42822c60107",
+  "type": "comparativo",
+  "payload": {
+    "codiEmp": 124,
+    "dataInicial": "2025-07-01",
+    "dataFinal": "2025-07-31",
+    "ingles": true
+  },
+  "status": "failed",
+  "progress": 0,
+  "result": null,
+  "error": "No module named 'COMPARATIVO'",
+  "createdAt": 1756303866521,
+  "startedAt": 1756303866625,
+  "completedAt": 1756303866704
+}

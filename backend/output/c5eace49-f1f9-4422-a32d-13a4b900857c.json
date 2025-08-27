@@ -1,0 +1,19 @@
+{
+  "id": "c5eace49-f1f9-4422-a32d-13a4b900857c",
+  "type": "comparativo",
+  "payload": {
+    "codiEmp": 2018,
+    "dataInicial": "2025-06-01",
+    "dataFinal": "2025-06-30",
+    "ingles": false
+  },
+  "status": "complete",
+  "progress": 100,
+  "result": {
+    "raw": "\r\n=== GERANDO RELATÓRIO ===\r\nEmpresa: 2018\r\nPeríodo: 2025-06-01 a 2025-06-30\r\nIdioma: Português\r\n==================================================\r\nModo: Mês único\r\nPeríodos: ['06/2025']\r\nExecutando query 'info_empresa'...\r\nQuery 'info_empresa' retornou 1 linhas.\r\n\r\nProcessando dados para mês único...\r\nExecutando query 'dados_relatorio'...\r\nQuery 'dados_relatorio' retornou 552 linhas.\r\nProcessando 552 registros do banco de dados...\r\nFiltro aplicado: 378 contas zeradas removidas. Restam 174 contas.\r\nGerando Excel mês único com 174 linhas...\r\nRelatório Excel mês único 'Comparativo_Movimento_2018_20250601_20250630_20250827_131859.xlsx' gerado com sucesso.\r\n\r\n📝 Renomeando arquivos...\r\nDebug: Iniciando renomeamento de Comparativo_Movimento_2018_20250601_20250630_20250827_131859.xlsx\r\nDebug: Caminho completo: Comparativo_Movimento_2018_20250601_20250630_20250827_131859.xlsx\r\nDebug: Arquivo existe: True\r\nDebug: Parâmetros - codi_emp: 2018, data_inicial: 2025-06-01, data_final: 2025-06-30, idioma_ingles: False\r\nDebug: Tipo de relatório identificado: comparativo\r\nDebug: Período 2025-06-01 a 2025-06-30, is_acumulado = False\r\nDebug: Novo nome gerado: CCIC DO BRASIL - MATRIZ - Comparativo de Resultado Acumulado 06.2025 - Emitido em 27.08.2025.xlsx\r\nDebug: Novo caminho: CCIC DO BRASIL - MATRIZ - Comparativo de Resultado Acumulado 06.2025 - Emitido em 27.08.2025.xlsx\r\nArquivo renomeado: Comparativo_Movimento_2018_20250601_20250630_20250827_131859.xlsx -> CCIC DO BRASIL - MATRIZ - Comparativo de Resultado Acumulado 06.2025 - Emitido em 27.08.2025.xlsx\r\nErro ao renomear arquivo Comparativo_Movimento_2018_20250601_20250630_20250827_131859.xlsx: name 'mover_arquivo_para_destino' is not defined\r\n[\"Comparativo_Movimento_2018_20250601_20250630_20250827_131859.xlsx\"]\r\n",
+    "code": 0
+  },
+  "error": null,
+  "createdAt": 1756311532226,
+  "startedAt": 1756311538657
+}
