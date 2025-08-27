@@ -220,8 +220,22 @@ export default function Home(){
 
       setProcessing(false)
       // show result summary
-      const summary = Array.from(statuses.entries()).map(([id,st])=>`${id}: ${st.status || 'unknown'}`)
-      setModal({ open: true, success: true, message: `Trabalhos finalizados. Resumo:\n${summary.join('\n')}` })
+      // Busca detalhes dos relatórios gerados (nomes e caminhos) se possível
+      let detalhes = []
+      for(const [id, st] of statuses.entries()){
+        if(st && st.status === 'complete' && st.result && st.result.files){
+          // st.result.files deve ser um array de arquivos gerados
+          st.result.files.forEach(f => {
+            detalhes.push(`✔️ ${f.name || f.path || f} gerado em: ${f.path || f}`)
+          })
+        } else if(st && st.status === 'complete') {
+          detalhes.push(`✔️ Relatório gerado com sucesso (ID: ${id})`)
+        } else if(st && st.status === 'failed') {
+          detalhes.push(`❌ Erro ao gerar relatório (ID: ${id})`)
+        }
+      }
+      if(detalhes.length === 0) detalhes.push('Todos os trabalhos finalizados, mas não foi possível obter detalhes dos arquivos gerados.')
+      setModal({ open: true, success: true, message: detalhes.join('\n') })
 
     }catch(err){ setProcessing(false); alert('Erro: '+err.message) }
   }

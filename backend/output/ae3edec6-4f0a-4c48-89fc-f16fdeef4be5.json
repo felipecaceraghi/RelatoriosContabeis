@@ -1,0 +1,19 @@
+{
+  "id": "ae3edec6-4f0a-4c48-89fc-f16fdeef4be5",
+  "type": "comparativo",
+  "payload": {
+    "codiEmp": 2399,
+    "dataInicial": "2025-06-01",
+    "dataFinal": "2025-06-30",
+    "ingles": false
+  },
+  "status": "complete",
+  "progress": 100,
+  "result": {
+    "raw": "\r\n=== GERANDO RELATÓRIO ===\r\nEmpresa: 2399\r\nPeríodo: 2025-06-01 a 2025-06-30\r\nIdioma: Português\r\n==================================================\r\nModo: Acumulado (multi-meses)\r\nPeríodo: 2025-01-01 a 2025-06-30\r\nExecutando query 'info_empresa'...\r\nQuery 'info_empresa' retornou 1 linhas.\r\n\r\nProcessando dados para acumulado...\r\nProcessando período: 01/2025\r\nProcessando período: 02/2025\r\nProcessando período: 03/2025\r\nProcessando período: 04/2025\r\nProcessando período: 05/2025\r\nProcessando período: 06/2025\r\nFiltro aplicado: 299 contas zeradas removidas. Restam 179 contas.\r\nGerando Excel acumulado com 179 linhas...\r\nRelatório Excel multi-meses 'Comparativo_Movimento_2399_20250601_20250630_20250827_163140.xlsx' gerado com sucesso.\r\n\r\n📝 Renomeando arquivos...\r\nDebug: Iniciando renomeamento de Comparativo_Movimento_2399_20250601_20250630_20250827_163140.xlsx\r\nDebug: Caminho completo: Comparativo_Movimento_2399_20250601_20250630_20250827_163140.xlsx\r\nDebug: Arquivo existe: True\r\nDebug: Parâmetros - codi_emp: 2399, data_inicial: 2025-06-01, data_final: 2025-06-30, idioma_ingles: False\r\nDebug: Tipo de relatório identificado: comparativo\r\nDebug: Nome da empresa: HIDROMARES PROJ\r\nDebug: Período 2025-06-01 a 2025-06-30, is_acumulado = False\r\nDebug: Novo nome gerado: HIDROMARES PROJ - Comparativo de Resultado Acumulado 06.2025 - Emitido em 27.08.2025.xlsx\r\nDebug: Novo caminho: HIDROMARES PROJ - Comparativo de Resultado Acumulado 06.2025 - Emitido em 27.08.2025.xlsx\r\nArquivo renomeado: Comparativo_Movimento_2399_20250601_20250630_20250827_163140.xlsx -> HIDROMARES PROJ - Comparativo de Resultado Acumulado 06.2025 - Emitido em 27.08.2025.xlsx\r\nArquivo movido para: R:\\\\Acesso Digital\\2399 - HIDROMARES PROJETOS (GRUPO HIDROMARES)\\02 - Contábil\\2025\\01 - Fechamento Contábil\\06\\03 - Relatórios contábeis\\GERADO PELO ROBO\\HIDROMARES PROJ - Comparativo de Resultado Acumulado 06.2025 - Emitido em 27.08.2025.xlsx\r\n[\"HIDROMARES PROJ - Comparativo de Resultado Acumulado 06.2025 - Emitido em 27.08.2025.xlsx\"]\r\n",
+    "code": 0
+  },
+  "error": null,
+  "createdAt": 1756323068581,
+  "startedAt": 1756323100166
+}

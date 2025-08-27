@@ -4,7 +4,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 // Allow CORS from the frontend dev server. Set ALLOWED_ORIGIN in env to customize.
-const allowedOrigin = process.env.ALLOWED_ORIGIN || 'http://localhost:3001'
+const allowedOrigin = 'https://contabil.gfestatistica.com.br'
 app.use(cors({ origin: allowedOrigin }))
 
 app.use(express.json());
