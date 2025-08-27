@@ -88,8 +88,12 @@ export default function Home(){
       ...options,
       headers: {
         ...(options.headers || {}),
-        'bypass-tunnel-reminder': '1',
-      }
+        'bypass-tunnel-reminder': 'true',
+      },
+    }
+    // Adiciona access-control-request-headers manualmente para forçar preflight com bypass-tunnel-reminder
+    if (!mergedOptions.headers['access-control-request-headers']) {
+      mergedOptions.headers['access-control-request-headers'] = 'bypass-tunnel-reminder,content-type';
     }
 
     for(const base of candidates){

@@ -1,0 +1,19 @@
+{
+  "id": "bbc9638d-a823-4329-89f7-b11a0a81f86b",
+  "type": "dre",
+  "payload": {
+    "codiEmp": 90124,
+    "dataInicial": "2025-01-01",
+    "dataFinal": "2025-06-30",
+    "ingles": false
+  },
+  "status": "complete",
+  "progress": 100,
+  "result": {
+    "raw": "Gerando DRE em português - Empresa: 90124, Período: 2025-01-01 a 2025-06-30\r\nTimestamp da execução: 20250827_151344\r\nConexão com o banco de dados bem-sucedida.\r\nExecutando consulta: estrutura_dre_completa_tipo2...\r\nConsulta estrutura_dre_completa_tipo2 retornou 0 linhas.\r\nExecutando consulta: cabecalho_empresa...\r\nConsulta cabecalho_empresa retornou 0 linhas.\r\nExecutando consulta: cabecalho_contador...\r\nConsulta cabecalho_contador retornou 1 linhas.\r\nExecutando consulta: cabecalho_administrador...\r\nConsulta cabecalho_administrador retornou 1 linhas.\r\nExecutando consulta: saldos_contas...\r\nConsulta saldos_contas retornou 0 linhas.\r\nConexão fechada.\r\nDados salvos em 'dados_dre_EMP90124_20250101_a_20250630_20250827_151344.json'\r\n{\"error\": \"list index out of range\"}\r\n",
+    "code": 1
+  },
+  "error": null,
+  "createdAt": 1756318406178,
+  "startedAt": 1756318423953
+}
