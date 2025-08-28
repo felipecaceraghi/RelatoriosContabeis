@@ -1,0 +1,19 @@
+{
+  "id": "e82c17e3-78bb-4052-a455-f01773e6d7b0",
+  "type": "razao",
+  "payload": {
+    "codiEmp": 124,
+    "dataInicial": "2025-06-01",
+    "dataFinal": "2025-06-30",
+    "ingles": false
+  },
+  "status": "complete",
+  "progress": 100,
+  "result": {
+    "raw": "\r\n============================================================\r\n🚀 INICIANDO FLUXO PARA EMPRESA: 124 (Sessão: 20250827_174353)\r\n⏰ Horário de início: 17:43:53\r\n============================================================\r\n   ⏱️  Conexão com banco: 0.1 segundos\r\n\r\n[CONFIG] Buscando traduções para o idioma selecionado...\r\n  -> Idioma configurado para: Português\r\n  -> Conexão com o banco de dados fechada.\r\n   ⏱️  Limpeza e fechamento: 0.0 segundos\r\n\r\n============================================================\r\n⏰ RELATÓRIO DE TEMPOS DE EXECUÇÃO\r\n============================================================\r\n🕐 Horário de término: 17:43:53\r\n📊 Detalhamento por etapa:\r\n   • Conexão                  : 0.1 segundos\r\n   • Limpeza final            : 0.0 segundos\r\n============================================================\r\n🏁 TEMPO TOTAL DE EXECUÇÃO: 0.1 segundos\r\n📈 Eficiência: 100.0% (tempo útil)\r\n============================================================\r\n✅ Fluxo concluído. 0 arquivo(s) gerado(s).\r\n{\"xlsx\": [], \"json\": null}\r\n",
+    "code": 0
+  },
+  "error": null,
+  "createdAt": 1756327432557,
+  "startedAt": 1756327432843
+}

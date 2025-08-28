@@ -1,0 +1,19 @@
+{
+  "id": "72252075-4cda-44c6-bf03-809b11533317",
+  "type": "comparativo",
+  "payload": {
+    "codiEmp": 2396,
+    "dataInicial": "2025-07-01",
+    "dataFinal": "2025-07-31",
+    "ingles": false
+  },
+  "status": "complete",
+  "progress": 100,
+  "result": {
+    "raw": "\r\n=== GERANDO RELATÓRIO ===\r\nEmpresa: 2396\r\nPeríodo: 2025-07-01 a 2025-07-31\r\nIdioma: Português\r\n==================================================\r\nModo: Acumulado (multi-meses)\r\nPeríodo: 2025-01-01 a 2025-07-31\r\nExecutando query 'info_empresa'...\r\nQuery 'info_empresa' retornou 1 linhas.\r\n\r\nProcessando dados para acumulado...\r\nProcessando período: 01/2025\r\nProcessando período: 02/2025\r\nProcessando período: 03/2025\r\nProcessando período: 04/2025\r\nProcessando período: 05/2025\r\nProcessando período: 06/2025\r\nProcessando período: 07/2025\r\nFiltro aplicado: 386 contas zeradas removidas. Restam 77 contas.\r\nGerando Excel acumulado com 77 linhas...\r\nRelatório Excel multi-meses 'Comparativo_Movimento_2396_20250701_20250731_20250828_102127.xlsx' gerado com sucesso.\r\n\r\n📝 Renomeando arquivos...\r\nDebug: Iniciando renomeamento de Comparativo_Movimento_2396_20250701_20250731_20250828_102127.xlsx\r\nDebug: Caminho completo: Comparativo_Movimento_2396_20250701_20250731_20250828_102127.xlsx\r\nDebug: Arquivo existe: True\r\nDebug: Parâmetros - codi_emp: 2396, data_inicial: 2025-07-01, data_final: 2025-07-31, idioma_ingles: False\r\nDebug: Tipo de relatório identificado: comparativo\r\nDebug: Nome da empresa: DC VECCHI\r\nDebug: Período 2025-07-01 a 2025-07-31, is_acumulado = False\r\nDebug: Novo nome gerado: DC VECCHI - Comparativo de Resultado Acumulado 07.2025 - Emitido em 28.08.2025.xlsx\r\nDebug: Novo caminho: DC VECCHI - Comparativo de Resultado Acumulado 07.2025 - Emitido em 28.08.2025.xlsx\r\nArquivo renomeado: Comparativo_Movimento_2396_20250701_20250731_20250828_102127.xlsx -> DC VECCHI - Comparativo de Resultado Acumulado 07.2025 - Emitido em 28.08.2025.xlsx\r\nErro ao buscar pasta do cliente: [WinError 3] O sistema não pode encontrar o caminho especificado: 'R:\\\\\\\\Acesso Digital'\r\nPasta do cliente 2396 não encontrada em R:\\\\Acesso Digital\r\n[\"DC VECCHI - Comparativo de Resultado Acumulado 07.2025 - Emitido em 28.08.2025.xlsx\"]\r\n",
+    "code": 0
+  },
+  "error": null,
+  "createdAt": 1756387282418,
+  "startedAt": 1756387287503
+}

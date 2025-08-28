@@ -1,0 +1,19 @@
+{
+  "id": "5f8c156f-2b9d-4ad8-94fc-c621b3b3c0a9",
+  "type": "dre",
+  "payload": {
+    "codiEmp": 2020,
+    "dataInicial": "2025-07-01",
+    "dataFinal": "2025-07-31",
+    "ingles": false
+  },
+  "status": "complete",
+  "progress": 100,
+  "result": {
+    "raw": "Gerando DRE em português - Empresa: 2020, Período: 2025-07-01 a 2025-07-31\r\nTimestamp da execução: 20250828_111438\r\nConexão com o banco de dados bem-sucedida.\r\nExecutando consulta: estrutura_dre_completa_tipo2...\r\nConsulta estrutura_dre_completa_tipo2 retornou 0 linhas.\r\nExecutando consulta: cabecalho_empresa...\r\nConsulta cabecalho_empresa retornou 1 linhas.\r\nExecutando consulta: cabecalho_contador...\r\nConsulta cabecalho_contador retornou 1 linhas.\r\nExecutando consulta: cabecalho_administrador...\r\nConsulta cabecalho_administrador retornou 1 linhas.\r\nExecutando consulta: saldos_contas...\r\nConsulta saldos_contas retornou 1109 linhas.\r\nConexão fechada.\r\nDados salvos em 'dados_dre_EMP2020_20250701_a_20250731_20250828_111438.json'\r\nErro ao registrar Tahoma: Can't open file \"tahomab.ttf\". Usando Helvetica como substituto.\r\nGrupos encontrados na DRE (0 grupos):\r\nPDF 'DRE_EMP2020_20250701_a_20250731_20250828_111438.pdf' gerado com sucesso.\r\nXLSX 'DRE_EMP2020_20250701_a_20250731_20250828_111438.xlsx' gerado com sucesso.\r\n\r\n📁 Arquivos gerados com sucesso:\r\n   • JSON: dados_dre_EMP2020_20250701_a_20250731_20250828_111438.json\r\n   • PDF:  DRE_EMP2020_20250701_a_20250731_20250828_111438.pdf\r\n   • XLSX: DRE_EMP2020_20250701_a_20250731_20250828_111438.xlsx\r\nDebug: Iniciando renomeamento de DRE_EMP2020_20250701_a_20250731_20250828_111438.pdf\r\nDebug: Caminho completo: DRE_EMP2020_20250701_a_20250731_20250828_111438.pdf\r\nDebug: Arquivo existe: True\r\nDebug: Parâmetros - codi_emp: 2020, data_inicial: 2025-07-01, data_final: 2025-07-31, idioma_ingles: False\r\nDebug: Tipo de relatório identificado: dre\r\nDebug: Nome da empresa: CCIC FL0003\r\nDebug: Período 2025-07-01 a 2025-07-31, is_acumulado = False\r\nDebug: Novo nome gerado: CCIC FL0003 - D.R.E. Mensal 07.2025 - Emitido em 28.08.2025.pdf\r\nDebug: Novo caminho: CCIC FL0003 - D.R.E. Mensal 07.2025 - Emitido em 28.08.2025.pdf\r\nErro ao renomear arquivo DRE_EMP2020_20250701_a_20250731_20250828_111438.pdf: [WinError 183] Não é possível criar um arquivo já existente: 'DRE_EMP2020_20250701_a_20250731_20250828_111438.pdf' -> 'CCIC FL0003 - D.R.E. Mensal 07.2025 - Emitido em 28.08.2025.pdf'\r\nDebug: Iniciando renomeamento de DRE_EMP2020_20250701_a_20250731_20250828_111438.xlsx\r\nDebug: Caminho completo: DRE_EMP2020_20250701_a_20250731_20250828_111438.xlsx\r\nDebug: Arquivo existe: True\r\nDebug: Parâmetros - codi_emp: 2020, data_inicial: 2025-07-01, data_final: 2025-07-31, idioma_ingles: False\r\nDebug: Tipo de relatório identificado: dre\r\nDebug: Nome da empresa: CCIC FL0003\r\nDebug: Período 2025-07-01 a 2025-07-31, is_acumulado = False\r\nDebug: Novo nome gerado: CCIC FL0003 - D.R.E. Mensal 07.2025 - Emitido em 28.08.2025.xlsx\r\nDebug: Novo caminho: CCIC FL0003 - D.R.E. Mensal 07.2025 - Emitido em 28.08.2025.xlsx\r\nErro ao renomear arquivo DRE_EMP2020_20250701_a_20250731_20250828_111438.xlsx: [WinError 183] Não é possível criar um arquivo já existente: 'DRE_EMP2020_20250701_a_20250731_20250828_111438.xlsx' -> 'CCIC FL0003 - D.R.E. Mensal 07.2025 - Emitido em 28.08.2025.xlsx'\r\n   • PDF renomeado:  DRE_EMP2020_20250701_a_20250731_20250828_111438.pdf\r\n   • XLSX renomeado: DRE_EMP2020_20250701_a_20250731_20250828_111438.xlsx\r\n{\"json\": \"dados_dre_EMP2020_20250701_a_20250731_20250828_111438.json\", \"pdf\": \"DRE_EMP2020_20250701_a_20250731_20250828_111438.pdf\", \"xlsx\": \"DRE_EMP2020_20250701_a_20250731_20250828_111438.xlsx\"}\r\n",
+    "code": 0
+  },
+  "error": null,
+  "createdAt": 1756390477901,
+  "startedAt": 1756390477902
+}

@@ -220,34 +220,8 @@ export default function Home(){
 
       setProcessing(false)
       // show result summary
-      // Busca detalhes dos relatórios gerados (nomes e caminhos) se possível
-      let detalhes = []
-      for(const [id, st] of statuses.entries()){
-        if(st && st.status === 'complete' && st.result && st.result.files){
-          // Aceita tanto objetos quanto strings em result.files
-          st.result.files.forEach(f => {
-            let nome, caminho
-            if(typeof f === 'string') {
-              caminho = f
-              // Extrai apenas o nome do arquivo do caminho
-              nome = f.split(/[\\/]/).pop()
-            } else if(typeof f === 'object' && f !== null) {
-              nome = f.name || (f.path ? f.path.split(/[\\/]/).pop() : '') || ''
-              caminho = f.path || f.name || ''
-            } else {
-              nome = String(f)
-              caminho = String(f)
-            }
-            detalhes.push(`✔️ ${nome} gerado em: ${caminho}`)
-          })
-        } else if(st && st.status === 'complete') {
-          detalhes.push(`✔️ Relatório gerado com sucesso (ID: ${id})`)
-        } else if(st && st.status === 'failed') {
-          detalhes.push(`❌ Erro ao gerar relatório (ID: ${id})`)
-        }
-      }
-      if(detalhes.length === 0) detalhes.push('Todos os trabalhos finalizados, mas não foi possível obter detalhes dos arquivos gerados.')
-      setModal({ open: true, success: true, message: detalhes.join('\n') })
+      const summary = Array.from(statuses.entries()).map(([id,st])=>`${id}: ${st.status || 'unknown'}`)
+      setModal({ open: true, success: true, message: `Trabalhos finalizados. Resumo:\n${summary.join('\n')}` })
 
     }catch(err){ setProcessing(false); alert('Erro: '+err.message) }
   }
@@ -270,47 +244,10 @@ export default function Home(){
   return (
     <div className="min-h-screen bg-gray-50">
       <header className="bg-gradient-to-r from-sky-700 to-sky-900 text-white py-3 shadow-lg">
-        <div className="container mx-auto px-4 flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
-          <img 
-            src="/logo.png" 
-            alt="Logo" 
-            className="h-[43.2px] sm:h-12 object-contain mb-2 sm:mb-0 mx-auto sm:mx-0 transition-all duration-200"
-            style={{ height: '43.2px' }} // fallback for mobile (10% menor que 48px)
-          />
-          <h1 
-            className="text-xl font-bold whitespace-normal text-center sm:text-left w-full sm:w-auto"
-            style={{ textAlign: 'center' }}
-          >
-            <span className="block sm:inline">Sistema de Automação - Relatórios Contábeis</span>
-          </h1>
+        <div className="container mx-auto px-4 flex items-center gap-4 flex-wrap sm:flex-nowrap">
+          <img src="/logo.png" alt="Logo" className="h-10 object-contain"/>
+          <h1 className="text-xl font-bold whitespace-normal sm:whitespace-nowrap text-center sm:text-left w-full sm:w-auto">Sistema de Automação - Relatórios Contábeis</h1>
         </div>
-        <style jsx>{`
-          @media (min-width: 640px) {
-            header .container {
-              justify-content: flex-start !important;
-            }
-            header img {
-              margin-left: 0 !important;
-              margin-right: 0 !important;
-            }
-            header h1 {
-              text-align: left !important;
-            }
-          }
-          @media (max-width: 639px) {
-            header .container {
-              justify-content: center !important;
-            }
-            header img {
-              height: 43.2px !important;
-              margin-left: auto !important;
-              margin-right: auto !important;
-            }
-            header h1 {
-              text-align: center !important;
-            }
-          }
-        `}</style>
       </header>
 
       <div className="app-scale">

@@ -1,0 +1,19 @@
+{
+  "id": "ea280681-2f66-44e5-bb4e-dbd5465066a8",
+  "type": "comparativo",
+  "payload": {
+    "codiEmp": 2396,
+    "dataInicial": "2025-07-01",
+    "dataFinal": "2025-07-31",
+    "ingles": false
+  },
+  "status": "complete",
+  "progress": 100,
+  "result": {
+    "raw": "\r\n=== GERANDO RELATÓRIO ===\r\nEmpresa: 2396\r\nPeríodo: 2025-07-01 a 2025-07-31\r\nIdioma: Português\r\n==================================================\r\nModo: Acumulado (multi-meses)\r\nPeríodo: 2025-01-01 a 2025-07-31\r\nExecutando query 'info_empresa'...\r\nQuery 'info_empresa' retornou 1 linhas.\r\n\r\nProcessando dados para acumulado...\r\nProcessando período: 01/2025\r\nProcessando período: 02/2025\r\nProcessando período: 03/2025\r\nProcessando período: 04/2025\r\nProcessando período: 05/2025\r\nProcessando período: 06/2025\r\nProcessando período: 07/2025\r\nFiltro aplicado: 386 contas zeradas removidas. Restam 77 contas.\r\nGerando Excel acumulado com 77 linhas...\r\nRelatório Excel multi-meses 'Comparativo_Movimento_2396_20250701_20250731_20250828_110757.xlsx' gerado com sucesso.\r\n\r\n📝 Renomeando arquivos...\r\nDebug: Iniciando renomeamento de Comparativo_Movimento_2396_20250701_20250731_20250828_110757.xlsx\r\nDebug: Caminho completo: Comparativo_Movimento_2396_20250701_20250731_20250828_110757.xlsx\r\nDebug: Arquivo existe: True\r\nDebug: Parâmetros - codi_emp: 2396, data_inicial: 2025-07-01, data_final: 2025-07-31, idioma_ingles: False\r\nDebug: Tipo de relatório identificado: comparativo\r\nDebug: Nome da empresa: DC VECCHI\r\nDebug: Período 2025-07-01 a 2025-07-31, is_acumulado = False\r\nDebug: Novo nome gerado: DC VECCHI - Comparativo de Resultado Acumulado 07.2025 - Emitido em 28.08.2025.xlsx\r\nDebug: Novo caminho: DC VECCHI - Comparativo de Resultado Acumulado 07.2025 - Emitido em 28.08.2025.xlsx\r\nErro ao renomear arquivo Comparativo_Movimento_2396_20250701_20250731_20250828_110757.xlsx: [WinError 183] Não é possível criar um arquivo já existente: 'Comparativo_Movimento_2396_20250701_20250731_20250828_110757.xlsx' -> 'DC VECCHI - Comparativo de Resultado Acumulado 07.2025 - Emitido em 28.08.2025.xlsx'\r\n[\"Comparativo_Movimento_2396_20250701_20250731_20250828_110757.xlsx\"]\r\n",
+    "code": 0
+  },
+  "error": null,
+  "createdAt": 1756390072421,
+  "startedAt": 1756390077013
+}

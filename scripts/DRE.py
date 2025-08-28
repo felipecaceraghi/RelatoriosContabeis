@@ -1210,6 +1210,3 @@ def gerar_dre(codi_emp, data_inicial, data_final, ingles=False):
         return None
 
 
-# EXEMPLO DE USO
-if __name__ == "__main__":
-    gerar_dre(2286, "2025-05-01", "2025-05-31")
